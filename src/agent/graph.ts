@@ -4,6 +4,48 @@ import { ChatGroq } from "@langchain/groq";
 import { checkAvailability, calculatePrice, validateDriver, OFFICIAL_DEPOSIT_BY_CATEGORY, INSURANCE_PRICING } from "@/db/queries";
 import { searchPolicies } from "./rag";
 
+export interface ExtractedData {
+  age?: string | number;
+  licenseDuration?: string | number;
+  vehicleType?: string;
+  days?: string | number;
+  discount?: string | number;
+  insuranceType?: string;
+  hoursDetail?: string;
+  ragContext?: string;
+  intention?: string;
+  [key: string]: unknown;
+}
+
+export interface ValidationStatus {
+  isEligible?: boolean;
+  requiresIncreasedDeposit?: boolean;
+  needsHumanReview?: boolean;
+  isAvailable?: boolean;
+  notes?: string[];
+  escalationReasons?: string[];
+  [key: string]: unknown;
+}
+
+export interface CalculationResult {
+  totalAPayer?: number;
+  caution?: number;
+  appliedDiscount?: number;
+  discountAmount?: number;
+  baseTotal?: number;
+  dailyRate?: number;
+  insuranceAmount?: number;
+  totalFormuleCdC?: number;
+  vehicleCategory?: string;
+  days?: number;
+  hoursDetail?: string | null;
+  insuranceLabel?: string;
+  isYoungDriver?: boolean;
+  seasonalMult?: number;
+  effectiveDailyRate?: number;
+  [key: string]: unknown;
+}
+
 // 1. Definition of the State using Annotation
 export const AgentStateAnnotation = Annotation.Root({
   messages: Annotation<BaseMessage[]>({
@@ -14,16 +56,16 @@ export const AgentStateAnnotation = Annotation.Root({
     reducer: (x, y) => y ?? x,
     default: () => "unknown",
   }),
-  extractedData: Annotation<Record<string, unknown>>({
-    reducer: (x, y) => ({ ...x, ...(y as Record<string, unknown>) }),
+  extractedData: Annotation<ExtractedData>({
+    reducer: (x, y) => ({ ...x, ...y }),
     default: () => ({}),
   }),
-  validationStatus: Annotation<Record<string, unknown>>({
-    reducer: (x, y) => ({ ...x, ...(y as Record<string, unknown>) }),
+  validationStatus: Annotation<ValidationStatus>({
+    reducer: (x, y) => ({ ...x, ...y }),
     default: () => ({}),
   }),
-  calculationResult: Annotation<Record<string, unknown>>({
-    reducer: (x, y) => ({ ...x, ...(y as Record<string, unknown>) }),
+  calculationResult: Annotation<CalculationResult>({
+    reducer: (x, y) => ({ ...x, ...y }),
     default: () => ({}),
   }),
   finalResponse: Annotation<string>({
@@ -124,9 +166,9 @@ async function validatorNode(state: AgentState) {
     escalationReasons: [],
   };
 
-  const age = state.extractedData?.age ? parseInt(state.extractedData.age) : null;
-  const licenseDuration = state.extractedData?.licenseDuration ? parseInt(state.extractedData.licenseDuration) : null;
-  const vehicleType = (state.extractedData?.vehicleType || '').toLowerCase();
+  const age = state.extractedData?.age ? parseInt(String(state.extractedData.age)) : null;
+  const licenseDuration = state.extractedData?.licenseDuration ? parseInt(String(state.extractedData.licenseDuration)) : null;
+  const vehicleType = String(state.extractedData?.vehicleType || '').toLowerCase();
 
   if (age !== null) {
     const driverCheck = validateDriver(age, licenseDuration ?? 3);
@@ -170,9 +212,9 @@ async function validatorNode(state: AgentState) {
 
 async function calculatorNode(state: AgentState) {
   const { extractedData, validationStatus } = state;
-  const days = Math.max(1, parseInt(extractedData?.days) || 1);
-  const discountPercent = parseInt(extractedData?.discount) || 0;
-  const rawVehicleType = (extractedData?.vehicleType || 'SUV').toLowerCase();
+  const days = Math.max(1, parseInt(String(extractedData?.days ?? '1')) || 1);
+  const discountPercent = parseInt(String(extractedData?.discount ?? '0')) || 0;
+  const rawVehicleType = String(extractedData?.vehicleType || 'SUV').toLowerCase();
   const vehicleType = rawVehicleType in OFFICIAL_DEPOSIT_BY_CATEGORY ? rawVehicleType : 'suv';
 
   // 1. Tarif journalier de base depuis PostgreSQL (fleet_catalog)
@@ -214,7 +256,7 @@ async function calculatorNode(state: AgentState) {
   // - Rachat de Franchise : 500 MAD forfait unique
   let insuranceAmount = 0;
   let insuranceLabel = "Assurance de base (incluse gratuitement - 0 MAD)";
-  const insType = (extractedData?.insuranceType || 'base').toLowerCase();
+  const insType = String(extractedData?.insuranceType || 'base').toLowerCase();
   if (insType.includes('allrisk') || insType.includes('tous risques')) {
     insuranceAmount = INSURANCE_PRICING.allriskDaily * days;
     insuranceLabel = `Option Tous Risques (${insuranceAmount} MAD soit 80 MAD/j)`;
@@ -226,7 +268,7 @@ async function calculatorNode(state: AgentState) {
   // 4. Caution obligatoire selon rental_policies.md :
   // Economy: 2 000 MAD | Compact: 3 000 MAD | SUV: 5 000 MAD | Premium: 15 000 MAD | Utility: 7 000 MAD
   let depositAmount = OFFICIAL_DEPOSIT_BY_CATEGORY[vehicleType] || 5000;
-  const isYoungDriver = validationStatus?.requiresIncreasedDeposit || (extractedData?.age && parseInt(extractedData.age) < 25);
+  const isYoungDriver = validationStatus?.requiresIncreasedDeposit || (extractedData?.age && parseInt(String(extractedData.age)) < 25);
   if (isYoungDriver) {
     depositAmount = Math.round(depositAmount * 1.5); // +50% jeune conducteur < 25 ans
   }
@@ -239,7 +281,7 @@ async function calculatorNode(state: AgentState) {
       ...calc,
       vehicleCategory: vehicleType.toUpperCase(),
       days,
-      hoursDetail: extractedData?.hoursDetail || null,
+      hoursDetail: extractedData?.hoursDetail ? String(extractedData.hoursDetail) : null,
       insuranceLabel,
       isYoungDriver: !!isYoungDriver,
       seasonalMult,

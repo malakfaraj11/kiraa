@@ -47,7 +47,12 @@ function parseCsv(content: string): Record<string, string>[] {
 }
 
 async function seed() {
-  const pool = new Pool({ connectionString: process.env.DATABASE_URL });
+  const connStr = process.env.DATABASE_URL || '';
+  const isLocal = connStr.includes('localhost') || connStr.includes('127.0.0.1') || connStr.includes('kiraa_postgres');
+  const pool = new Pool({
+    connectionString: connStr,
+    ssl: isLocal ? false : { rejectUnauthorized: false },
+  });
   const client = await pool.connect();
 
   const DATA_DIR = path.resolve(__dirname, '../../data');

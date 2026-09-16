@@ -6,8 +6,11 @@ let _db: ReturnType<typeof drizzle> | null = null;
 
 export function getDb() {
   if (!_db) {
+    const connStr = process.env.DATABASE_URL || '';
+    const isLocal = connStr.includes('localhost') || connStr.includes('127.0.0.1') || connStr.includes('kiraa_postgres');
     const pool = new Pool({
-      connectionString: process.env.DATABASE_URL,
+      connectionString: connStr,
+      ssl: isLocal ? false : { rejectUnauthorized: false },
     });
     _db = drizzle(pool, { schema });
   }
