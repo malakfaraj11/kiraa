@@ -78,16 +78,20 @@ export default function Home() {
         });
       }
 
-      if (!response.ok) throw new Error("Erreur réseau");
+      if (!response.ok) {
+        const errData = await response.json().catch(() => ({}));
+        throw new Error(errData.error || `Erreur serveur (${response.status})`);
+      }
       const data = await response.json();
       if (data.error) throw new Error(data.error);
 
       setMessages((prev) => [...prev, { role: "assistant", content: data.content }]);
-    } catch (error) {
-      console.error("Erreur:", error);
+    } catch (error: unknown) {
+      console.error("Erreur chat:", error);
+      const msg = error instanceof Error ? error.message : "Erreur de communication avec le serveur.";
       setMessages((prev) => [
         ...prev,
-        { role: "assistant", content: "Désolé, une erreur s'est produite lors de la communication avec le serveur." },
+        { role: "assistant", content: `⚠️ ${msg}` },
       ]);
     } finally {
       setIsLoading(false);
