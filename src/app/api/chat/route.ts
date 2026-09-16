@@ -158,8 +158,12 @@ export async function POST(req: Request) {
     // Last message gets the (potentially document-enriched) content
     langChainMessages.push(new HumanMessage(lastMessageContent));
 
+    const threadId = "kiraa-session-default";
     const graph = createAgentGraph();
-    const result = await graph.invoke({ messages: langChainMessages });
+    const result = await graph.invoke(
+      { messages: langChainMessages },
+      { configurable: { thread_id: threadId } }
+    );
 
     const reply = result.finalResponse || "Je n'ai pas pu formuler de réponse.";
 
