@@ -1,0 +1,896 @@
+
+> kiraa_web_app@0.1.0 dev
+> next dev
+
+▲ Next.js 16.3.5 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://10.10.14.85:3000
+- Environments: .env.local
+✓ Ready in 665ms
+✓ Running next.config.ts took 46ms
+
+ GET / 200 in 675ms (next.js: 320ms, application-code: 355ms)
+ GET / 200 in 134ms (next.js: 24ms, application-code: 109ms)
+ GET / 200 in 74ms (next.js: 7ms, application-code: 67ms)
+DEBUG: GROQ_API_KEY is SET
+Erreur API Chat: TypeError: Cannot read properties of undefined (reading 'startsWith')
+    at RunnableCallable.extractorNode [as func] (src/agent/graph.ts:69:36)
+  67 |   });
+  68 |
+> 69 |   const modelWithStructure = model.withStructuredOutput(extractionSchema);
+     |                                    ^
+  70 |   
+  71 |   const systemPrompt = new SystemMessage(`
+  72 |     Tu es l'Extracteur de Kiraa (agence de location de voiture). {
+  pregelTaskId: '9984f323-6fcb-5442-95a9-a6cee699f2b6'
+}
+ POST /api/chat 500 in 523ms (next.js: 299ms, application-code: 225ms)
+ GET / 200 in 62ms (next.js: 8ms, application-code: 54ms)
+ GET / 200 in 139ms (next.js: 24ms, application-code: 114ms)
+ GET / 200 in 44ms (next.js: 11ms, application-code: 33ms)
+DEBUG: GROQ_API_KEY is SET
+Erreur d'extraction: Error: 404 {"error":{"message":"The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.","type":"invalid_request_error","code":"model_not_found"}}
+    at ignore-listed frames {
+  status: 404,
+  headers: Headers {
+    date: 'Wed, 16 Sep 2026 11:33:03 GMT',
+    'content-type': 'application/json',
+    'transfer-encoding': 'chunked',
+    connection: 'keep-alive',
+    'cache-control': 'private, max-age=0, no-store, no-cache, must-revalidate',
+    server: 'cloudflare',
+    vary: 'Origin',
+    'x-groq-region': 'fra',
+    'x-request-id': 'req_01m2mzvrp6eme93zeq71s0qjrb',
+    'set-cookie': '__cf_bm=084Q9aLs4X94QW4MC1bUEAzAD_pkeoAJ0Pd4ZYyNRZg-1789558383.2842786-1.0.1.1-dhBYgBXBxY0gLSKulnPvxDkkFgul4KooboYqjh6xrAbMdSAu.lxxeCNsdZkIgQGSTXm5pF8qNx8Ysu__D33hUiEm7hKiF.Ka3epwiUe41.ujG7MGvNiBrbvBT4r6tZtw; HttpOnly; SameSite=None; Secure; Path=/; Domain=groq.com; Expires=Wed, 16 Sep 2026 12:03:03 GMT',
+    via: '1.1 google',
+    'strict-transport-security': 'max-age=15552000',
+    'cf-cache-status': 'DYNAMIC',
+    'content-encoding': 'br',
+    'cf-ray': 'a3bf8dd789edbccd-MRS',
+    'alt-svc': 'h3=":443"; ma=86400'
+  },
+  error: {
+    error: {
+      message: 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.',
+      type: 'invalid_request_error',
+      code: 'model_not_found'
+    }
+  }
+}
+Erreur de génération LLM: Error: 404 {"error":{"message":"The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.","type":"invalid_request_error","code":"model_not_found"}}
+    at ignore-listed frames {
+  status: 404,
+  headers: Headers {
+    date: 'Wed, 16 Sep 2026 11:33:03 GMT',
+    'content-type': 'application/json',
+    'transfer-encoding': 'chunked',
+    connection: 'keep-alive',
+    'cache-control': 'private, max-age=0, no-store, no-cache, must-revalidate',
+    server: 'cloudflare',
+    vary: 'Origin',
+    'x-groq-region': 'fra',
+    'x-request-id': 'req_01m2mzvrv2ehvbmknw81wx1kbd',
+    'set-cookie': '__cf_bm=Dv1RRd8CM5l4PzNz_57o8JaGRvNrDzAQkKTZ885wLMg-1789558383.441616-1.0.1.1-1QSzetP_x5brfxxHfwyTMhdxHTihUb46bwoDnKcF86NI79OZrSTR0c0X4IzYsmIpYrYbEPacwVDPnMXkxknzQh3XttuVjQqUXMvDdxM_R_PqZUmCp09hLkdeEH9ROAEd; HttpOnly; SameSite=None; Secure; Path=/; Domain=groq.com; Expires=Wed, 16 Sep 2026 12:03:03 GMT',
+    via: '1.1 google',
+    'strict-transport-security': 'max-age=15552000',
+    'cf-cache-status': 'DYNAMIC',
+    'content-encoding': 'br',
+    'cf-ray': 'a3bf8dd88cc6bccd-MRS',
+    'alt-svc': 'h3=":443"; ma=86400'
+  },
+  error: {
+    error: {
+      message: 'The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.',
+      type: 'invalid_request_error',
+      code: 'model_not_found'
+    }
+  }
+}
+ POST /api/chat 200 in 717ms (next.js: 6ms, application-code: 712ms)
+ GET / 200 in 116ms (next.js: 4ms, application-code: 112ms)
+ GET / 200 in 88ms (next.js: 57ms, application-code: 31ms)
+ GET / 200 in 37ms (next.js: 14ms, application-code: 23ms)
+DEBUG: GROQ_API_KEY is SET
+Erreur d'extraction: Error: 400 {"error":{"message":"The model `llama3-70b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.","type":"invalid_request_error","code":"model_decommissioned"}}
+    at ignore-listed frames {
+  status: 400,
+  headers: Headers {
+    date: 'Wed, 16 Sep 2026 11:33:33 GMT',
+    'content-type': 'application/json',
+    'content-length': '276',
+    connection: 'keep-alive',
+    'cache-control': 'private, max-age=0, no-store, no-cache, must-revalidate',
+    server: 'cloudflare',
+    vary: 'Origin',
+    'x-groq-region': 'fra',
+    'x-request-id': 'req_01m2mzwpe1e0jr5qsrt8xzhsaf',
+    via: '1.1 google',
+    'cf-cache-status': 'DYNAMIC',
+    'set-cookie': '__cf_bm=jBOCjOQTscrUw_LSk.UBjVpYS3fv_RU9LTynQsV2dLs-1789558413.7352924-1.0.1.1-bMjwNS046J3aGI0SoIjnGLTuOZ2qTLVQDfLqD8kVe491._SpxykWVuk.S0eCabSYO7mSoq6JS.T8.7L34ziC82Ca_rk3WcwTdUmmUsYUqKFFgY87Qry0CX5sA.3MFVJ0; HttpOnly; SameSite=None; Secure; Path=/; Domain=groq.com; Expires=Wed, 16 Sep 2026 12:03:33 GMT',
+    'strict-transport-security': 'max-age=15552000',
+    'cf-ray': 'a3bf8e95db78d665-LIS',
+    'alt-svc': 'h3=":443"; ma=86400'
+  },
+  error: {
+    error: {
+      message: 'The model `llama3-70b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.',
+      type: 'invalid_request_error',
+      code: 'model_decommissioned'
+    }
+  }
+}
+Erreur de génération LLM: Error: 400 {"error":{"message":"The model `llama3-70b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.","type":"invalid_request_error","code":"model_decommissioned"}}
+    at ignore-listed frames {
+  status: 400,
+  headers: Headers {
+    date: 'Wed, 16 Sep 2026 11:33:33 GMT',
+    'content-type': 'application/json',
+    'content-length': '276',
+    connection: 'keep-alive',
+    'cache-control': 'private, max-age=0, no-store, no-cache, must-revalidate',
+    server: 'cloudflare',
+    vary: 'Origin',
+    'x-groq-region': 'fra',
+    'x-request-id': 'req_01m2mzwpmve3pszmzmj0h12gnk',
+    'set-cookie': '__cf_bm=vERgi_gEWPl64M9ASEd7MArz1LPXuW8WRmPXnFcRyjc-1789558413.9640703-1.0.1.1-mS9O_8Q_JD989Z7eaZQlpqqMB3Qn1J1ntqBP7JdalbB4c2DRQYaBfXL72fCpdPyixoONhWEhpMPB0vRyBt0VhbIzmrxANWfj8xZUt4pbEBGKM0jPNS7azLoFfeDgrXQE; HttpOnly; SameSite=None; Secure; Path=/; Domain=groq.com; Expires=Wed, 16 Sep 2026 12:03:33 GMT',
+    via: '1.1 google',
+    'strict-transport-security': 'max-age=15552000',
+    'cf-cache-status': 'DYNAMIC',
+    'cf-ray': 'a3bf8e974aea9d99-MRS',
+    'alt-svc': 'h3=":443"; ma=86400'
+  },
+  error: {
+    error: {
+      message: 'The model `llama3-70b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.',
+      type: 'invalid_request_error',
+      code: 'model_decommissioned'
+    }
+  }
+}
+ POST /api/chat 200 in 399ms (next.js: 4ms, application-code: 395ms)
+ GET / 200 in 49ms (next.js: 14ms, application-code: 35ms)
+ GET / 200 in 157ms (next.js: 134ms, application-code: 23ms)
+ GET / 200 in 48ms (next.js: 23ms, application-code: 25ms)
+DEBUG: GROQ_API_KEY is SET
+Erreur d'extraction: Error: 400 {"error":{"message":"`tool calling` is not supported with this model","type":"invalid_request_error","param":"tool calling"}}
+    at ignore-listed frames {
+  status: 400,
+  headers: Headers {
+    date: 'Wed, 16 Sep 2026 11:35:16 GMT',
+    'content-type': 'application/json',
+    'content-length': '126',
+    connection: 'keep-alive',
+    'cache-control': 'private, max-age=0, no-store, no-cache, must-revalidate',
+    server: 'cloudflare',
+    vary: 'Origin',
+    'x-groq-region': 'fra',
+    'x-request-id': 'req_01m2mzztk6ea28er1q4qp78vma',
+    via: '1.1 google',
+    'cf-cache-status': 'DYNAMIC',
+    'set-cookie': '__cf_bm=7_txRBH0uQ_j3IlIsZkV93wYMtbza2r0l0.JQ68KO2k-1789558516.3107517-1.0.1.1-W5wFn0ipjFARZAlT9Tf8r6u0vgjBpWwm6Gnd0c_qFja3kvxsXrveJvXNhPcdJdL.gOPMUm4zBiujtJXimVXX8oUUSQF.swzjc8sMmzj6s.HEgimf1QRwwoUMEPRjK_wS; HttpOnly; SameSite=None; Secure; Path=/; Domain=groq.com; Expires=Wed, 16 Sep 2026 12:05:16 GMT',
+    'strict-transport-security': 'max-age=15552000',
+    'cf-ray': 'a3bf9116ea13406b-MRS',
+    'alt-svc': 'h3=":443"; ma=86400'
+  },
+  error: {
+    error: {
+      message: '`tool calling` is not supported with this model',
+      type: 'invalid_request_error',
+      param: 'tool calling'
+    }
+  }
+}
+ POST /api/chat 200 in 2.3s (next.js: 9ms, application-code: 2.3s)
+ GET / 200 in 66ms (next.js: 13ms, application-code: 53ms)
+DEBUG: GROQ_API_KEY is SET
+Erreur d'extraction: Error: 400 {"error":{"message":"`tool calling` is not supported with this model","type":"invalid_request_error","param":"tool calling"}}
+    at ignore-listed frames {
+  status: 400,
+  headers: Headers {
+    date: 'Wed, 16 Sep 2026 11:36:02 GMT',
+    'content-type': 'application/json',
+    'content-length': '126',
+    connection: 'keep-alive',
+    'cache-control': 'private, max-age=0, no-store, no-cache, must-revalidate',
+    server: 'cloudflare',
+    vary: 'Origin',
+    'x-groq-region': 'fra',
+    'x-request-id': 'req_01m2n017bqeezt43k5jgha3x7y',
+    'set-cookie': '__cf_bm=awJAbusV7MSAtP6ks3RZLEjY19SIDAVRDXtNjGevdfg-1789558562.150568-1.0.1.1-H7yjdAhrfAi9SWlGtqERIqSKU79tUXZV5em7MD0GsPR28ShCfqKaBEk_KBN2iTcfYvZQ7IP7SqFotI2BTzoVRR3nSpnMMP8C5QT4.dAXBo3qYqr1sSwd21IT_qSenKqy; HttpOnly; SameSite=None; Secure; Path=/; Domain=groq.com; Expires=Wed, 16 Sep 2026 12:06:02 GMT',
+    via: '1.1 google',
+    'strict-transport-security': 'max-age=15552000',
+    'cf-cache-status': 'DYNAMIC',
+    'cf-ray': 'a3bf92356c48c8e1-MRS',
+    'alt-svc': 'h3=":443"; ma=86400'
+  },
+  error: {
+    error: {
+      message: '`tool calling` is not supported with this model',
+      type: 'invalid_request_error',
+      param: 'tool calling'
+    }
+  }
+}
+ POST /api/chat 200 in 5.2s (next.js: 3ms, application-code: 5.2s)
+⨯ ./src/app/api/chat/route.ts:5:1
+Error: Module not found: Can't resolve 'pdf-parse/lib/pdf-parse.js'
+  [90m3 |[0m [36mimport[0m { [33mHumanMessage[0m } [36mfrom[0m [32m"@langchain/core/messages"[0m;
+  [90m4 |[0m [90m// @ts-ignore - pdf-parse has no types package[0m
+[31m[1m>[0m [90m5 |[0m [36mimport[0m pdfParse [36mfrom[0m [32m"pdf-parse/lib/pdf-parse.js"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m6 |[0m
+  [90m7 |[0m [36mexport[0m [36masync[0m [36mfunction[0m [33mPOST[0m(req: [33mRequest[0m) {
+  [90m8 |[0m   [36mtry[0m {
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./src/app/api/chat/route.ts:5:1
+Error: Module not found: Can't resolve 'pdf-parse/lib/pdf-parse.js'
+  [90m3 |[0m [36mimport[0m { [33mHumanMessage[0m } [36mfrom[0m [32m"@langchain/core/messages"[0m;
+  [90m4 |[0m [90m// @ts-ignore - pdf-parse has no types package[0m
+[31m[1m>[0m [90m5 |[0m [36mimport[0m pdfParse [36mfrom[0m [32m"pdf-parse/lib/pdf-parse.js"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m6 |[0m
+  [90m7 |[0m [36mexport[0m [36masync[0m [36mfunction[0m [33mPOST[0m(req: [33mRequest[0m) {
+  [90m8 |[0m   [36mtry[0m {
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+✓ Compiled in 74ms
+⨯ ./src/app/api/chat/route.ts:5:1
+Error: Module not found: Can't resolve 'pdf-parse/lib/pdf-parse.js'
+  [90m3 |[0m [36mimport[0m { [33mHumanMessage[0m } [36mfrom[0m [32m"@langchain/core/messages"[0m;
+  [90m4 |[0m [90m// @ts-ignore - pdf-parse has no types package[0m
+[31m[1m>[0m [90m5 |[0m [36mimport[0m pdfParse [36mfrom[0m [32m"pdf-parse/lib/pdf-parse.js"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m6 |[0m
+  [90m7 |[0m [36mexport[0m [36masync[0m [36mfunction[0m [33mPOST[0m(req: [33mRequest[0m) {
+  [90m8 |[0m   [36mtry[0m {
+
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+ POST /api/chat 500 in 1466ms (next.js: 1285ms, application-code: 181ms)
+⨯ ./src/app/api/chat/route.ts:5:1
+Error: Export default doesn't exist in target module
+  [90m3 |[0m [36mimport[0m { [33mHumanMessage[0m } [36mfrom[0m [32m"@langchain/core/messages"[0m;
+  [90m4 |[0m [90m// @ts-ignore - pdf-parse has no official types[0m
+[31m[1m>[0m [90m5 |[0m [36mimport[0m pdfParse [36mfrom[0m [32m"pdf-parse"[0m;
+  [90m  |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m6 |[0m
+  [90m7 |[0m [36mexport[0m [36masync[0m [36mfunction[0m [33mPOST[0m(req: [33mRequest[0m) {
+  [90m8 |[0m   [36mtry[0m {
+
+The export default was not found in module [project]/node_modules/pdf-parse/dist/pdf-parse/esm/index.js [app-route] (ecmascript).
+Did you mean to import Rectangle?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+
+ POST /api/chat 500 in 23ms (next.js: 11ms, application-code: 13ms)
+ GET / 200 in 95ms (next.js: 24ms, application-code: 72ms)
+ GET / 200 in 48ms (next.js: 4ms, application-code: 45ms)
+ GET / 200 in 50ms (next.js: 22ms, application-code: 28ms)
+ GET / 200 in 67ms (next.js: 23ms, application-code: 44ms)
+ GET / 200 in 26ms (next.js: 3ms, application-code: 23ms)
+ GET / 200 in 46ms (next.js: 24ms, application-code: 22ms)
+DEBUG: GROQ_API_KEY is SET
+Erreur d'extraction: Error: 400 {"error":{"message":"`tool calling` is not supported with this model","type":"invalid_request_error","param":"tool calling"}}
+    at ignore-listed frames {
+  status: 400,
+  headers: Headers {
+    date: 'Wed, 16 Sep 2026 11:43:37 GMT',
+    'content-type': 'application/json',
+    'content-length': '126',
+    connection: 'keep-alive',
+    'cache-control': 'private, max-age=0, no-store, no-cache, must-revalidate',
+    server: 'cloudflare',
+    vary: 'Origin',
+    'x-groq-region': 'fra',
+    'x-request-id': 'req_01m2n0f3mnekha47ed2sxj91ry',
+    'set-cookie': '__cf_bm=XMHmQvcXZu9qJ.r6Sn0kc0q8LDRcoaHgELIo8Zu9gDU-1789559017.0888054-1.0.1.1-otysOW1ALQtiyD9mNL7oJ9JC7AxjMSMBYidc8rzYUkR30LvcppoDzhPdqLZzD3RYpDop680MEzh_srAlbRqQGkq4AKjM0ALaeEY1Y1b15APcXP2VAuoG0V6E7FOFJIE2; HttpOnly; SameSite=None; Secure; Path=/; Domain=groq.com; Expires=Wed, 16 Sep 2026 12:13:37 GMT',
+    via: '1.1 google',
+    'strict-transport-security': 'max-age=15552000',
+    'cf-cache-status': 'DYNAMIC',
+    'cf-ray': 'a3bf9d50ca7b0424-MAD',
+    'alt-svc': 'h3=":443"; ma=86400'
+  },
+  error: {
+    error: {
+      message: '`tool calling` is not supported with this model',
+      type: 'invalid_request_error',
+      param: 'tool calling'
+    }
+  }
+}
+ POST /api/chat 200 in 3.9s (next.js: 87ms, application-code: 3.9s)
+Erreur API Chat: TypeError: Cannot read properties of undefined (reading 'verbosity')
+    at POST (src/app/api/chat/route.ts:27:24)
+  25 |       if (file && file.type === "application/pdf") {
+  26 |         const buffer = Buffer.from(await file.arrayBuffer());
+> 27 |         const parser = new PDFParse();
+     |                        ^
+  28 |         await parser.load(buffer);
+  29 |         const pages = await parser.getText();
+  30 |         const extractedText = pages?.map((p: any) => p.text).join("\n").trim();
+ POST /api/chat 500 in 287ms (next.js: 3ms, application-code: 284ms)
+ GET / 200 in 67ms (next.js: 6ms, application-code: 62ms)
+ GET / 200 in 101ms (next.js: 4ms, application-code: 98ms)
+ GET / 200 in 66ms (next.js: 17ms, application-code: 49ms)
+ GET / 200 in 29ms (next.js: 5ms, application-code: 24ms)
+ GET / 200 in 64ms (next.js: 13ms, application-code: 51ms)
+ GET / 200 in 31ms (next.js: 3ms, application-code: 28ms)
+DEBUG: GROQ_API_KEY is SET
+ POST /api/chat 200 in 11.2s (next.js: 4ms, application-code: 11.2s)
+[browser] ./src/app/api/chat/route.ts:5:1
+Error: Module not found: Can't resolve 'pdf-parse/lib/pdf-parse.js'
+  3 | import { HumanMessage } from "@langchain/core/messages";
+  4 | // @ts-ignore - pdf-parse has no types package
+> 5 | import pdfParse from "pdf-parse/lib/pdf-parse.js";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export async function POST(req: Request) {
+  8 |   try {
+
+https://nextjs.org/docs/messages/module-not-found 
+[browser] ./src/app/api/chat/route.ts:5:1
+Error: Module not found: Can't resolve 'pdf-parse/lib/pdf-parse.js'
+  3 | import { HumanMessage } from "@langchain/core/messages";
+  4 | // @ts-ignore - pdf-parse has no types package
+> 5 | import pdfParse from "pdf-parse/lib/pdf-parse.js";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export async function POST(req: Request) {
+  8 |   try {
+
+https://nextjs.org/docs/messages/module-not-found 
+[browser] ./src/app/api/chat/route.ts:5:1
+Error: Module not found: Can't resolve 'pdf-parse/lib/pdf-parse.js'
+  3 | import { HumanMessage } from "@langchain/core/messages";
+  4 | // @ts-ignore - pdf-parse has no types package
+> 5 | import pdfParse from "pdf-parse/lib/pdf-parse.js";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export async function POST(req: Request) {
+  8 |   try {
+
+https://nextjs.org/docs/messages/module-not-found 
+[browser] ./src/app/api/chat/route.ts:5:1
+Error: Module not found: Can't resolve 'pdf-parse/lib/pdf-parse.js'
+  3 | import { HumanMessage } from "@langchain/core/messages";
+  4 | // @ts-ignore - pdf-parse has no types package
+> 5 | import pdfParse from "pdf-parse/lib/pdf-parse.js";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export async function POST(req: Request) {
+  8 |   try {
+
+https://nextjs.org/docs/messages/module-not-found 
+[browser] ./src/app/api/chat/route.ts:5:1
+Error: Module not found: Can't resolve 'pdf-parse/lib/pdf-parse.js'
+  3 | import { HumanMessage } from "@langchain/core/messages";
+  4 | // @ts-ignore - pdf-parse has no types package
+> 5 | import pdfParse from "pdf-parse/lib/pdf-parse.js";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export async function POST(req: Request) {
+  8 |   try {
+
+https://nextjs.org/docs/messages/module-not-found 
+[browser] ./src/app/api/chat/route.ts:5:1
+Error: Export default doesn't exist in target module
+  3 | import { HumanMessage } from "@langchain/core/messages";
+  4 | // @ts-ignore - pdf-parse has no official types
+> 5 | import pdfParse from "pdf-parse";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export async function POST(req: Request) {
+  8 |   try {
+
+The export default was not found in module [project]/node_modules/pdf-parse/dist/pdf-parse/esm/index.js [app-route] (ecmascript).
+Did you mean to import Rectangle?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist. 
+[browser] ./src/app/api/chat/route.ts:5:1
+Error: Export default doesn't exist in target module
+  3 | import { HumanMessage } from "@langchain/core/messages";
+  4 | // @ts-ignore - pdf-parse has no official types
+> 5 | import pdfParse from "pdf-parse";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export async function POST(req: Request) {
+  8 |   try {
+
+The export default was not found in module [project]/node_modules/pdf-parse/dist/pdf-parse/esm/index.js [app-route] (ecmascript).
+Did you mean to import Rectangle?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist. 
+ GET / 200 in 114ms (next.js: 16ms, application-code: 99ms)
+DEBUG: GROQ_API_KEY is SET
+ POST /api/chat 200 in 6.4s (next.js: 9ms, application-code: 6.4s)
+DEBUG: GROQ_API_KEY is SET
+Erreur de génération LLM: Error: 413 {"error":{"message":"Request Entity Too Large","type":"invalid_request_error","code":"request_too_large"}}
+    at ignore-listed frames {
+  status: 413,
+  headers: Headers {
+    date: 'Wed, 16 Sep 2026 11:51:40 GMT',
+    'content-type': 'application/json',
+    'content-length': '107',
+    connection: 'keep-alive',
+    'cache-control': 'private, max-age=0, no-store, no-cache, must-revalidate',
+    server: 'cloudflare',
+    vary: 'Origin',
+    'x-groq-region': 'fra',
+    'x-ratelimit-limit-requests': '250',
+    'x-ratelimit-limit-tokens': '70000',
+    'x-ratelimit-remaining-requests': '242',
+    'x-ratelimit-remaining-tokens': '68600',
+    'x-ratelimit-reset-requests': '46m4.8s',
+    'x-ratelimit-reset-tokens': '1.2s',
+    'x-request-id': 'req_01m2n0xmpcemb85khanhvjjt4y',
+    via: '1.1 google',
+    'cf-cache-status': 'DYNAMIC',
+    'set-cookie': '__cf_bm=vGhoBpglf25Y2rv3Q8_b52ezwcG2kXfC6gkv3u2P4NY-1789559493.3022547-1.0.1.1-JQorNZ5gm9.wXW8X4lna653VzuyvdKVYEnkHagkmUMTZWmHf9DXW3pnqvxQ6ZKg.EdPuSI5T1x3p6tGNolxlJESVS_ytdvEc.cQpU2HxiYqv7pGQV9hIMIJcEwZlSzI1; HttpOnly; SameSite=None; Secure; Path=/; Domain=groq.com; Expires=Wed, 16 Sep 2026 12:21:40 GMT',
+    'strict-transport-security': 'max-age=15552000',
+    'cf-ray': 'a3bfa8f12edc0376-MAD',
+    'alt-svc': 'h3=":443"; ma=86400'
+  },
+  error: {
+    error: {
+      message: 'Request Entity Too Large',
+      type: 'invalid_request_error',
+      code: 'request_too_large'
+    }
+  }
+}
+ POST /api/chat 200 in 9.1s (next.js: 2ms, application-code: 9.1s)
+ GET / 200 in 98ms (next.js: 6ms, application-code: 92ms)
+ GET / 200 in 122ms (next.js: 4ms, application-code: 118ms)
+ GET / 200 in 65ms (next.js: 4ms, application-code: 61ms)
+Erreur de génération LLM: Error: 413 {"error":{"message":"Request Entity Too Large","type":"invalid_request_error","code":"request_too_large"}}
+    at ignore-listed frames {
+  status: 413,
+  headers: Headers {
+    date: 'Wed, 16 Sep 2026 11:53:03 GMT',
+    'content-type': 'application/json',
+    'content-length': '107',
+    connection: 'keep-alive',
+    'cache-control': 'private, max-age=0, no-store, no-cache, must-revalidate',
+    server: 'cloudflare',
+    vary: 'Origin',
+    'x-groq-region': 'fra',
+    'x-ratelimit-limit-requests': '250',
+    'x-ratelimit-limit-tokens': '70000',
+    'x-ratelimit-remaining-requests': '240',
+    'x-ratelimit-remaining-tokens': '69393',
+    'x-ratelimit-reset-requests': '57m36s',
+    'x-ratelimit-reset-tokens': '520ms',
+    'x-request-id': 'req_01m2n105hwecy9984b333ae865',
+    via: '1.1 google',
+    'cf-cache-status': 'DYNAMIC',
+    'set-cookie': '__cf_bm=WaL4Xj_ml1EM_5dACa06GYkmqOPauIdFQj6cQycm5r4-1789559576.1067615-1.0.1.1-26JmTQje8_rZWHSpVGOdCdci5EVS0Sv_lUZ1Ql.baqfgGuqRrVws.qdd8EqSoMts7l9Knyh1wGza9L55i6yl0YxbEwEZJ7xezjZk7X1EA91Uv_DqOd64V3L5KzzE3iQD; HttpOnly; SameSite=None; Secure; Path=/; Domain=groq.com; Expires=Wed, 16 Sep 2026 12:23:03 GMT',
+    'strict-transport-security': 'max-age=15552000',
+    'cf-ray': 'a3bfaaf6abd1189e-MRS',
+    'alt-svc': 'h3=":443"; ma=86400'
+  },
+  error: {
+    error: {
+      message: 'Request Entity Too Large',
+      type: 'invalid_request_error',
+      code: 'request_too_large'
+    }
+  }
+}
+ POST /api/chat 200 in 9.2s (next.js: 5ms, application-code: 9.2s)
+ GET / 200 in 57ms (next.js: 3ms, application-code: 53ms)
+ GET / 200 in 100ms (next.js: 3ms, application-code: 96ms)
+ GET / 200 in 67ms (next.js: 3ms, application-code: 64ms)
+ POST /api/chat 200 in 1637ms (next.js: 7ms, application-code: 1631ms)
+ GET / 200 in 32ms (next.js: 6ms, application-code: 26ms)
+ GET / 200 in 82ms (next.js: 13ms, application-code: 69ms)
+ GET / 200 in 37ms (next.js: 3ms, application-code: 34ms)
+ POST /api/chat 200 in 3.0s (next.js: 54ms, application-code: 3.0s)
+ GET / 200 in 34ms (next.js: 5ms, application-code: 29ms)
+ GET / 200 in 85ms (next.js: 23ms, application-code: 62ms)
+ GET / 200 in 39ms (next.js: 7ms, application-code: 31ms)
+ GET / 200 in 31ms (next.js: 3ms, application-code: 28ms)
+ GET / 200 in 86ms (next.js: 14ms, application-code: 72ms)
+ GET / 200 in 48ms (next.js: 4ms, application-code: 44ms)
+ GET / 200 in 61ms (next.js: 3ms, application-code: 58ms)
+ GET / 200 in 76ms (next.js: 4ms, application-code: 72ms)
+ GET / 200 in 43ms (next.js: 6ms, application-code: 37ms)
+ GET / 200 in 76ms (next.js: 24ms, application-code: 53ms)
+ GET / 200 in 58ms (next.js: 4ms, application-code: 54ms)
+ GET / 200 in 30ms (next.js: 3ms, application-code: 26ms)
+ GET / 200 in 173ms (next.js: 8ms, application-code: 165ms)
+ GET / 200 in 267ms (next.js: 4ms, application-code: 263ms)
+ GET / 200 in 132ms (next.js: 8ms, application-code: 125ms)
+✓ Compiled in 79ms
+ POST /api/chat 200 in 1553ms (next.js: 24ms, application-code: 1529ms)
+ GET / 200 in 58ms (next.js: 5ms, application-code: 53ms)
+ GET / 200 in 68ms (next.js: 5ms, application-code: 63ms)
+ POST /api/chat 200 in 1783ms (next.js: 24ms, application-code: 1760ms)
+ POST /api/chat 200 in 2.4s (next.js: 4ms, application-code: 2.4s)
+ POST /api/chat 200 in 1716ms (next.js: 13ms, application-code: 1703ms)
+ GET / 200 in 211ms (next.js: 7ms, application-code: 204ms)
+ GET / 200 in 102ms (next.js: 6ms, application-code: 96ms)
+ GET / 200 in 34ms (next.js: 6ms, application-code: 28ms)
+ GET / 200 in 26ms (next.js: 4ms, application-code: 22ms)
+ GET / 200 in 51ms (next.js: 5ms, application-code: 46ms)
+ GET / 200 in 29ms (next.js: 3ms, application-code: 25ms)
+ GET / 200 in 68ms (next.js: 13ms, application-code: 55ms)
+ GET / 200 in 28ms (next.js: 4ms, application-code: 24ms)
+ GET / 200 in 74ms (next.js: 4ms, application-code: 70ms)
+ GET / 200 in 78ms (next.js: 3ms, application-code: 75ms)
+ GET / 200 in 37ms (next.js: 5ms, application-code: 32ms)
+ GET / 200 in 55ms (next.js: 12ms, application-code: 43ms)
+ GET / 200 in 77ms (next.js: 15ms, application-code: 62ms)
+ GET / 200 in 53ms (next.js: 3ms, application-code: 50ms)
+ GET / 200 in 64ms (next.js: 16ms, application-code: 48ms)
+ GET / 200 in 27ms (next.js: 3ms, application-code: 23ms)
+ GET / 200 in 61ms (next.js: 5ms, application-code: 56ms)
+ GET / 200 in 72ms (next.js: 3ms, application-code: 69ms)
+ GET / 200 in 70ms (next.js: 7ms, application-code: 64ms)
+ GET / 200 in 46ms (next.js: 5ms, application-code: 41ms)
+ POST /api/chat 200 in 2.2s (next.js: 16ms, application-code: 2.2s)
+ GET / 200 in 59ms (next.js: 7ms, application-code: 52ms)
+ POST /api/chat 200 in 1631ms (next.js: 3ms, application-code: 1628ms)
+ POST /api/chat 200 in 2.1s (next.js: 3ms, application-code: 2.1s)
+ POST /api/chat 200 in 1467ms (next.js: 2ms, application-code: 1464ms)
+ POST /api/chat 200 in 1882ms (next.js: 3ms, application-code: 1879ms)
+ GET / 200 in 69ms (next.js: 8ms, application-code: 60ms)
+ GET / 200 in 80ms (next.js: 3ms, application-code: 77ms)
+ GET / 200 in 83ms (next.js: 4ms, application-code: 79ms)
+ GET / 200 in 38ms (next.js: 6ms, application-code: 32ms)
+ GET / 200 in 35ms (next.js: 6ms, application-code: 29ms)
+ GET / 200 in 40ms (next.js: 15ms, application-code: 25ms)
+ GET / 200 in 55ms (next.js: 13ms, application-code: 42ms)
+ GET / 200 in 40ms (next.js: 14ms, application-code: 26ms)
+ GET / 200 in 70ms (next.js: 20ms, application-code: 50ms)
+ GET / 200 in 41ms (next.js: 16ms, application-code: 25ms)
+ GET / 200 in 37ms (next.js: 12ms, application-code: 25ms)
+ GET / 200 in 32ms (next.js: 8ms, application-code: 23ms)
+ POST /api/chat 200 in 1827ms (next.js: 5ms, application-code: 1822ms)
+ POST /api/chat 200 in 1878ms (next.js: 17ms, application-code: 1861ms)
+ GET / 200 in 41ms (next.js: 16ms, application-code: 25ms)
+ GET / 200 in 17ms (next.js: 2ms, application-code: 14ms)
+ GET / 200 in 47ms (next.js: 3ms, application-code: 43ms)
+ GET / 200 in 55ms (next.js: 2ms, application-code: 53ms)
+ GET / 200 in 25ms (next.js: 6ms, application-code: 18ms)
+ GET / 200 in 40ms (next.js: 12ms, application-code: 28ms)
+ GET / 200 in 34ms (next.js: 14ms, application-code: 20ms)
+ GET / 200 in 36ms (next.js: 13ms, application-code: 22ms)
+ POST /api/chat 200 in 2.7s (next.js: 7ms, application-code: 2.6s)
+ GET / 200 in 45ms (next.js: 5ms, application-code: 40ms)
+ GET / 200 in 43ms (next.js: 3ms, application-code: 41ms)
+ GET / 200 in 49ms (next.js: 3ms, application-code: 46ms)
+ GET / 200 in 28ms (next.js: 3ms, application-code: 25ms)
+ POST /api/chat 200 in 2.3s (next.js: 14ms, application-code: 2.3s)
+ POST /api/chat 200 in 4.5s (next.js: 5ms, application-code: 4.5s)
+ POST /api/chat 200 in 1717ms (next.js: 1.9ms, application-code: 1715ms)
+ GET / 200 in 39ms (next.js: 9ms, application-code: 29ms)
+ GET / 200 in 46ms (next.js: 16ms, application-code: 30ms)
+ POST /api/chat 200 in 2.6s (next.js: 14ms, application-code: 2.6s)
+✓ Compiled in 125ms
+ GET / 200 in 148ms (next.js: 17ms, application-code: 131ms)
+ GET / 200 in 41ms (next.js: 23ms, application-code: 18ms)
+ GET / 200 in 26ms (next.js: 12ms, application-code: 14ms)
+ GET / 200 in 24ms (next.js: 6ms, application-code: 18ms)
+ GET / 200 in 39ms (next.js: 13ms, application-code: 26ms)
+ GET / 200 in 267ms (next.js: 14ms, application-code: 253ms)
+ GET / 200 in 49ms (next.js: 29ms, application-code: 20ms)
+ GET / 200 in 44ms (next.js: 24ms, application-code: 20ms)
+ POST /api/chat 200 in 1903ms (next.js: 8ms, application-code: 1896ms)
+ POST /api/chat 200 in 2.8s (next.js: 1.6ms, application-code: 2.8s)
+ POST /api/chat 200 in 2.5s (next.js: 1.4ms, application-code: 2.5s)
+ GET / 200 in 54ms (next.js: 7ms, application-code: 48ms)
+ POST /api/chat 200 in 1857ms (next.js: 4ms, application-code: 1853ms)
+ POST /api/chat 200 in 1924ms (next.js: 2ms, application-code: 1922ms)
+ POST /api/chat 200 in 1751ms (next.js: 2ms, application-code: 1749ms)
+ POST /api/chat 200 in 2.8s (next.js: 3ms, application-code: 2.8s)
+ POST /api/chat 200 in 2.8s (next.js: 1.7ms, application-code: 2.8s)
+ POST /api/chat 200 in 2.8s (next.js: 2ms, application-code: 2.8s)
+ POST /api/chat 200 in 4.4s (next.js: 1.9ms, application-code: 4.4s)
+ POST /api/chat 200 in 3.0s (next.js: 3ms, application-code: 3.0s)
+ POST /api/chat 200 in 2.6s (next.js: 4ms, application-code: 2.6s)
+ POST /api/chat 200 in 1133ms (next.js: 4ms, application-code: 1129ms)
+ POST /api/chat 200 in 1972ms (next.js: 2ms, application-code: 1970ms)
+ POST /api/chat 200 in 3.1s (next.js: 6ms, application-code: 3.1s)
+ POST /api/chat 200 in 3.1s (next.js: 3ms, application-code: 3.1s)
+ GET / 200 in 75ms (next.js: 15ms, application-code: 61ms)
+ GET / 200 in 45ms (next.js: 4ms, application-code: 41ms)
+ GET / 200 in 27ms (next.js: 3ms, application-code: 24ms)
+ GET / 200 in 19ms (next.js: 4ms, application-code: 15ms)
+✓ Compiled in 64ms
+ GET / 200 in 52ms (next.js: 20ms, application-code: 32ms)
+ GET / 200 in 79ms (next.js: 6ms, application-code: 74ms)
+ GET / 200 in 69ms (next.js: 12ms, application-code: 57ms)
+ GET / 200 in 30ms (next.js: 5ms, application-code: 25ms)
+ GET / 200 in 57ms (next.js: 6ms, application-code: 51ms)
+ GET / 200 in 26ms (next.js: 4ms, application-code: 22ms)
+ GET / 200 in 30ms (next.js: 9ms, application-code: 21ms)
+ GET / 200 in 39ms (next.js: 17ms, application-code: 22ms)
+ GET / 200 in 84ms (next.js: 11ms, application-code: 73ms)
+ POST /api/chat 200 in 3.0s (next.js: 10ms, application-code: 3.0s)
+ POST /api/chat 200 in 2.5s (next.js: 15ms, application-code: 2.5s)
+[browser] ./src/app/api/chat/route.ts:5:1
+Error: Module not found: Can't resolve 'pdf-parse/lib/pdf-parse.js'
+  3 | import { HumanMessage } from "@langchain/core/messages";
+  4 | // @ts-ignore - pdf-parse has no types package
+> 5 | import pdfParse from "pdf-parse/lib/pdf-parse.js";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export async function POST(req: Request) {
+  8 |   try {
+
+https://nextjs.org/docs/messages/module-not-found 
+[browser] ./src/app/api/chat/route.ts:5:1
+Error: Module not found: Can't resolve 'pdf-parse/lib/pdf-parse.js'
+  3 | import { HumanMessage } from "@langchain/core/messages";
+  4 | // @ts-ignore - pdf-parse has no types package
+> 5 | import pdfParse from "pdf-parse/lib/pdf-parse.js";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export async function POST(req: Request) {
+  8 |   try {
+
+https://nextjs.org/docs/messages/module-not-found 
+[browser] ./src/app/api/chat/route.ts:5:1
+Error: Module not found: Can't resolve 'pdf-parse/lib/pdf-parse.js'
+  3 | import { HumanMessage } from "@langchain/core/messages";
+  4 | // @ts-ignore - pdf-parse has no types package
+> 5 | import pdfParse from "pdf-parse/lib/pdf-parse.js";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export async function POST(req: Request) {
+  8 |   try {
+
+https://nextjs.org/docs/messages/module-not-found 
+[browser] ./src/app/api/chat/route.ts:5:1
+Error: Module not found: Can't resolve 'pdf-parse/lib/pdf-parse.js'
+  3 | import { HumanMessage } from "@langchain/core/messages";
+  4 | // @ts-ignore - pdf-parse has no types package
+> 5 | import pdfParse from "pdf-parse/lib/pdf-parse.js";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export async function POST(req: Request) {
+  8 |   try {
+
+https://nextjs.org/docs/messages/module-not-found 
+[browser] ./src/app/api/chat/route.ts:5:1
+Error: Module not found: Can't resolve 'pdf-parse/lib/pdf-parse.js'
+  3 | import { HumanMessage } from "@langchain/core/messages";
+  4 | // @ts-ignore - pdf-parse has no types package
+> 5 | import pdfParse from "pdf-parse/lib/pdf-parse.js";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export async function POST(req: Request) {
+  8 |   try {
+
+https://nextjs.org/docs/messages/module-not-found 
+[browser] ./src/app/api/chat/route.ts:5:1
+Error: Export default doesn't exist in target module
+  3 | import { HumanMessage } from "@langchain/core/messages";
+  4 | // @ts-ignore - pdf-parse has no official types
+> 5 | import pdfParse from "pdf-parse";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export async function POST(req: Request) {
+  8 |   try {
+
+The export default was not found in module [project]/node_modules/pdf-parse/dist/pdf-parse/esm/index.js [app-route] (ecmascript).
+Did you mean to import Rectangle?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist. 
+[browser] ./src/app/api/chat/route.ts:5:1
+Error: Export default doesn't exist in target module
+  3 | import { HumanMessage } from "@langchain/core/messages";
+  4 | // @ts-ignore - pdf-parse has no official types
+> 5 | import pdfParse from "pdf-parse";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export async function POST(req: Request) {
+  8 |   try {
+
+The export default was not found in module [project]/node_modules/pdf-parse/dist/pdf-parse/esm/index.js [app-route] (ecmascript).
+Did you mean to import Rectangle?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist. 
+[browser] ./src/db/schema.ts:19:10
+Error: the name `z` is defined multiple times
+  17 |   },
+  18 | });
+> 19 | import { z } from 'zod';
+     |          ^
+  20 |
+  21 | export const fleetCatalog = pgTable('fleet_catalog', {
+  22 |   vehicleId: varchar('vehicle_id', { length: 50 }).primaryKey(),
+
+Ecmascript file had an error
+
+Import trace:
+  App Route:
+    ./src/db/schema.ts
+    ./src/db/queries.ts
+    ./src/agent/graph.ts
+    ./src/app/api/chat/route.ts 
+[browser] ./src/db/schema.ts:19:10
+Error: the name `z` is defined multiple times
+  17 |   },
+  18 | });
+> 19 | import { z } from 'zod';
+     |          ^
+  20 |
+  21 | export const fleetCatalog = pgTable('fleet_catalog', {
+  22 |   vehicleId: varchar('vehicle_id', { length: 50 }).primaryKey(),
+
+Ecmascript file had an error
+
+Import trace:
+  App Route:
+    ./src/db/schema.ts
+    ./src/db/queries.ts
+    ./src/agent/graph.ts
+    ./src/app/api/chat/route.ts 
+[browser] ./src/app/api/chat/route.ts:5:1
+Error: Module not found: Can't resolve 'pdf-parse/lib/pdf-parse.js'
+  3 | import { HumanMessage } from "@langchain/core/messages";
+  4 | // @ts-ignore - pdf-parse has no types package
+> 5 | import pdfParse from "pdf-parse/lib/pdf-parse.js";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export async function POST(req: Request) {
+  8 |   try {
+
+https://nextjs.org/docs/messages/module-not-found 
+[browser] ./src/app/api/chat/route.ts:5:1
+Error: Module not found: Can't resolve 'pdf-parse/lib/pdf-parse.js'
+  3 | import { HumanMessage } from "@langchain/core/messages";
+  4 | // @ts-ignore - pdf-parse has no types package
+> 5 | import pdfParse from "pdf-parse/lib/pdf-parse.js";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export async function POST(req: Request) {
+  8 |   try {
+
+https://nextjs.org/docs/messages/module-not-found 
+[browser] ./src/app/api/chat/route.ts:5:1
+Error: Module not found: Can't resolve 'pdf-parse/lib/pdf-parse.js'
+  3 | import { HumanMessage } from "@langchain/core/messages";
+  4 | // @ts-ignore - pdf-parse has no types package
+> 5 | import pdfParse from "pdf-parse/lib/pdf-parse.js";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export async function POST(req: Request) {
+  8 |   try {
+
+https://nextjs.org/docs/messages/module-not-found 
+[browser] ./src/app/api/chat/route.ts:5:1
+Error: Module not found: Can't resolve 'pdf-parse/lib/pdf-parse.js'
+  3 | import { HumanMessage } from "@langchain/core/messages";
+  4 | // @ts-ignore - pdf-parse has no types package
+> 5 | import pdfParse from "pdf-parse/lib/pdf-parse.js";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export async function POST(req: Request) {
+  8 |   try {
+
+https://nextjs.org/docs/messages/module-not-found 
+[browser] ./src/app/api/chat/route.ts:5:1
+Error: Module not found: Can't resolve 'pdf-parse/lib/pdf-parse.js'
+  3 | import { HumanMessage } from "@langchain/core/messages";
+  4 | // @ts-ignore - pdf-parse has no types package
+> 5 | import pdfParse from "pdf-parse/lib/pdf-parse.js";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export async function POST(req: Request) {
+  8 |   try {
+
+https://nextjs.org/docs/messages/module-not-found 
+[browser] ./src/app/api/chat/route.ts:5:1
+Error: Export default doesn't exist in target module
+  3 | import { HumanMessage } from "@langchain/core/messages";
+  4 | // @ts-ignore - pdf-parse has no official types
+> 5 | import pdfParse from "pdf-parse";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export async function POST(req: Request) {
+  8 |   try {
+
+The export default was not found in module [project]/node_modules/pdf-parse/dist/pdf-parse/esm/index.js [app-route] (ecmascript).
+Did you mean to import Rectangle?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist. 
+[browser] ./src/app/api/chat/route.ts:5:1
+Error: Export default doesn't exist in target module
+  3 | import { HumanMessage } from "@langchain/core/messages";
+  4 | // @ts-ignore - pdf-parse has no official types
+> 5 | import pdfParse from "pdf-parse";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  6 |
+  7 | export async function POST(req: Request) {
+  8 |   try {
+
+The export default was not found in module [project]/node_modules/pdf-parse/dist/pdf-parse/esm/index.js [app-route] (ecmascript).
+Did you mean to import Rectangle?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist. 
+[browser] ./src/db/schema.ts:19:10
+Error: the name `z` is defined multiple times
+  17 |   },
+  18 | });
+> 19 | import { z } from 'zod';
+     |          ^
+  20 |
+  21 | export const fleetCatalog = pgTable('fleet_catalog', {
+  22 |   vehicleId: varchar('vehicle_id', { length: 50 }).primaryKey(),
+
+Ecmascript file had an error
+
+Import trace:
+  App Route:
+    ./src/db/schema.ts
+    ./src/db/queries.ts
+    ./src/agent/graph.ts
+    ./src/app/api/chat/route.ts 
+ GET / 200 in 74ms (next.js: 9ms, application-code: 65ms)
+ POST /api/chat 200 in 3.0s (next.js: 11ms, application-code: 3.0s)
+ POST /api/chat 200 in 4.1s (next.js: 2ms, application-code: 4.1s)
+ POST /api/chat 200 in 2.2s (next.js: 2ms, application-code: 2.2s)
+ POST /api/chat 200 in 2.9s (next.js: 3ms, application-code: 2.9s)
+ GET / 200 in 31ms (next.js: 6ms, application-code: 25ms)
+ GET / 200 in 34ms (next.js: 5ms, application-code: 30ms)
+ GET / 200 in 26ms (next.js: 3ms, application-code: 23ms)
+ GET / 200 in 40ms (next.js: 23ms, application-code: 17ms)
+ GET / 200 in 50ms (next.js: 9ms, application-code: 41ms)
+ GET / 200 in 131ms (next.js: 9ms, application-code: 123ms)
+ GET / 200 in 98ms (next.js: 12ms, application-code: 86ms)
+ GET / 200 in 39ms (next.js: 3ms, application-code: 36ms)
+ GET / 200 in 74ms (next.js: 5ms, application-code: 70ms)
+ GET / 200 in 62ms (next.js: 3ms, application-code: 59ms)
+ GET / 200 in 44ms (next.js: 18ms, application-code: 26ms)
+ GET / 200 in 35ms (next.js: 13ms, application-code: 22ms)
+PDFParse fallback to regex: Error: Setting up fake worker failed: "Cannot find module '/Users/mac/Downloads/kiraa_notebook_package/kiraa_web_app/.next/dev/server/chunks/pdf.worker.mjs' imported from /Users/mac/Downloads/kiraa_notebook_package/kiraa_web_app/.next/dev/server/chunks/[turbopack]_runtime.js".
+    at eval (webpack://pdf.js/src/display/api.js:2278:11)
+  2276 |       .catch(reason => {
+  2277 |         this.#capability.reject(
+> 2278 |           new Error(`Setting up fake worker failed: "${reason.message}".`)
+       |           ^
+  2279 |         );
+  2280 |       });
+  2281 |   }
+ POST /api/chat 200 in 3.3s (next.js: 10ms, application-code: 3.3s)
+ GET / 200 in 55ms (next.js: 5ms, application-code: 50ms)
+PDFParse fallback to regex: Error: Setting up fake worker failed: "Cannot find module '/Users/mac/Downloads/kiraa_notebook_package/kiraa_web_app/.next/dev/server/chunks/pdf.worker.mjs' imported from /Users/mac/Downloads/kiraa_notebook_package/kiraa_web_app/.next/dev/server/chunks/[turbopack]_runtime.js".
+    at eval (webpack://pdf.js/src/display/api.js:2278:11)
+  2276 |       .catch(reason => {
+  2277 |         this.#capability.reject(
+> 2278 |           new Error(`Setting up fake worker failed: "${reason.message}".`)
+       |           ^
+  2279 |         );
+  2280 |       });
+  2281 |   }
+ POST /api/chat 200 in 2.7s (next.js: 4ms, application-code: 2.7s)
+PDFParse fallback to regex: Error: Setting up fake worker failed: "Cannot find module '/Users/mac/Downloads/kiraa_notebook_package/kiraa_web_app/.next/dev/server/chunks/pdf.worker.mjs' imported from /Users/mac/Downloads/kiraa_notebook_package/kiraa_web_app/.next/dev/server/chunks/[turbopack]_runtime.js".
+    at eval (webpack://pdf.js/src/display/api.js:2278:11)
+  2276 |       .catch(reason => {
+  2277 |         this.#capability.reject(
+> 2278 |           new Error(`Setting up fake worker failed: "${reason.message}".`)
+       |           ^
+  2279 |         );
+  2280 |       });
+  2281 |   }
+ POST /api/chat 200 in 2.2s (next.js: 15ms, application-code: 2.2s)
+ GET / 200 in 58ms (next.js: 5ms, application-code: 54ms)
+PDFParse fallback to regex: Error: Setting up fake worker failed: "Cannot find module '/Users/mac/Downloads/kiraa_notebook_package/kiraa_web_app/.next/dev/server/chunks/pdf.worker.mjs' imported from /Users/mac/Downloads/kiraa_notebook_package/kiraa_web_app/.next/dev/server/chunks/[turbopack]_runtime.js".
+    at eval (webpack://pdf.js/src/display/api.js:2278:11)
+  2276 |       .catch(reason => {
+  2277 |         this.#capability.reject(
+> 2278 |           new Error(`Setting up fake worker failed: "${reason.message}".`)
+       |           ^
+  2279 |         );
+  2280 |       });
+  2281 |   }
+ POST /api/chat 200 in 3.3s (next.js: 4ms, application-code: 3.3s)

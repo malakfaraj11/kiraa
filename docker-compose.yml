@@ -1,0 +1,52 @@
+services:
+  db:
+    build:
+      context: .
+      dockerfile: Dockerfile.postgres
+    container_name: kiraa_postgres
+    environment:
+      POSTGRES_USER: kiraa_user
+      POSTGRES_PASSWORD: kiraa_password
+      POSTGRES_DB: kiraa_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - kiraa_pgdata:/var/lib/postgresql/data
+    networks:
+      - kiraa_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U kiraa_user -d kiraa_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: kiraa_web
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: postgresql://kiraa_user:kiraa_password@db:5432/kiraa_db
+      GROQ_API_KEY: ${GROQ_API_KEY}
+      NODE_ENV: production
+    networks:
+      - kiraa_network
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:3000/api/health | grep -q '\"status\":\"ok\"' || exit 1"]
+      interval: 15s
+      timeout: 10s
+      retries: 5
+    restart: unless-stopped
+
+volumes:
+  kiraa_pgdata:
+
+networks:
+  kiraa_network:
+    driver: bridge
