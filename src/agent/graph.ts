@@ -1,7 +1,7 @@
 import { StateGraph, START, END, Annotation, MemorySaver } from "@langchain/langgraph";
 import { BaseMessage, SystemMessage } from "@langchain/core/messages";
 import { ChatGroq } from "@langchain/groq";
-import { checkAvailability, calculatePrice, validateDriver, OFFICIAL_DEPOSIT_BY_CATEGORY, INSURANCE_PRICING } from "@/db/queries";
+import { checkAvailability, calculatePrice, validateDriver, OFFICIAL_DEPOSIT_BY_CATEGORY, INSURANCE_PRICING, getSeasonalMultiplierFallback } from "@/db/queries";
 import { searchPolicies } from "./rag";
 
 export interface ExtractedData {
@@ -234,9 +234,9 @@ async function calculatorNode(state: AgentState) {
   }
 
   // 2. Multiplicateur saisonnier
-  let seasonalMult = 1.0;
+  const currentMonth = new Date().getMonth() + 1;
+  let seasonalMult = getSeasonalMultiplierFallback(currentMonth, vehicleType);
   try {
-    const currentMonth = new Date().getMonth() + 1;
     const { db: dbInst } = await import('@/db/index');
     const { seasonalPricingMatrix } = await import('@/db/schema');
     const { sql: sqlFn } = await import('drizzle-orm');
@@ -247,7 +247,7 @@ async function calculatorNode(state: AgentState) {
       seasonalMult = parseFloat(seasonal[0].multiplier);
     }
   } catch (e) {
-    seasonalMult = 1.0;
+    // Garder la valeur déterministe de getSeasonalMultiplierFallback
   }
 
   // 3. Assurance selon rental_policies.md :
@@ -324,7 +324,29 @@ RÈGLES D'OR STRICTES DU CAHIER DES CHARGES (SCÉNARIO CONDUCTEUR NON ÉLIGIBLE)
     }
   }
 
-  // CAS 2 : DOSSIER ÉLIGIBLE OU DEMANDE DE DEVIS
+  // CAS 2 : QUESTION SUR LES RÈGLES / POLITIQUES (policy_query)
+  if (state.intention === "policy_query") {
+    const policyPrompt = new SystemMessage(
+      `Tu es Kiraa, assistant IA officiel de l'agence de location automobile Kiraa au Maroc.
+Réponds avec courtoisie, clarté et précision professionnelle à la question du client.
+
+CONTEXTE DOCUMENTAIRE POLITIQUES RAG :
+${state.extractedData?.ragContext || "Annulation gratuite jusqu'à 48h avant la prise en charge. Caution restituée sous 15 jours. Franchise incluse selon option choisis."}
+
+DIRECTIVES STRICTES POLITIQUES :
+1. Réponds directement et précisément à la question posée (ex: annulation, remboursement, caution, assurance).
+2. Ne présente AUCUN devis tarifaire, ne demande PAS les informations de permis ou CIN, et ne génère aucun devis.`
+    );
+
+    try {
+      const response = await model.invoke([policyPrompt, ...state.messages]);
+      return { finalResponse: response.content as string };
+    } catch (e) {
+      return { finalResponse: `Règlement Kiraa : ${state.extractedData?.ragContext || "Toute annulation effectuée plus de 48h avant le début de la location est intégralement remboursée sans frais."}` };
+    }
+  }
+
+  // CAS 3 : DOSSIER ÉLIGIBLE OU DEMANDE DE DEVIS
   let calcSummary = "Aucun calcul financier nécessaire pour cette demande.";
   if (hasCalc) {
     const hoursText = calc.hoursDetail ? ` (${calc.hoursDetail})` : "";
@@ -361,16 +383,15 @@ DIRECTIVES STRICTES ZÉRO-HALLUCINATION :
    - Confirme expressément : location de 1 jour pour la tranche horaire de 17h à 23h (6 heures).
    - Rappelle que toute location sur une même journée est soumise au tarif forfaitaire d'une journée (1 jour).
 2. Présente les chiffres avec une clarté absolue :
-   - Le tarif journalier est de ${calc.dailyRate || 520} MAD.
+   - Le tarif journalier appliqué (avec coefficient saisonnier ${calc.seasonalMult || 1.0}) est de ${calc.effectiveDailyRate || 598} MAD.
    - L'assurance de base est **INCLUSE GRATUITEMENT (0 MAD)**.
-   - Le **TOTAL À PAYER pour la location** est de **${calc.totalAPayer || 520} MAD** (ce que le client règle pour louer la voiture).
+   - Le **TOTAL À PAYER pour la location** est de **${calc.totalAPayer || 598} MAD** (ce que le client règle pour louer la voiture).
    - La **Caution (Dépôt de garantie)** est de **${calc.caution || 5000} MAD** : bloquée par empreinte bancaire à la prise en charge et **intégralement restituée** sous 15 jours au retour du véhicule si aucun dommage.
 3. Si des données conducteur ont été fournies (document JSON, OCR, etc.) :
    - Accueille et confirme poliment les données enregistrées (Nom: ${state.extractedData?.driverName || "reçu"}, CIN: ${state.extractedData?.idNumber || "reçu"}, Permis N°: ${state.extractedData?.licenseNumber || "reçu"}).
    - Si la date de naissance a permis de valider l'âge (${state.extractedData?.age || "≥ 21"} ans), confirme que la condition d'âge est remplie !
    - Si seule l'ancienneté du permis n'était pas dans le document, invite simplement à préciser l'ancienneté du permis (minimum 2 ans).
-   - Ne dis JAMAIS que le document n'est pas lisible si des données figurent dans le message.
-4. Si le client n'a pas encore renseigné son âge ou l'ancienneté de son permis, invite-le cordialement à les fournir pour valider son dossier (conditions requises : 21 ans minimum et 2 ans de permis).
+4. Si le client n'a pas encore renseigné son âge ou l'ancienneté de son permis, invite-le cordialement à les fournir pour valider définitivement son dossier (conditions requises : 21 ans minimum et 2 ans de permis).
 5. Ne modifie JAMAIS les montants calculés par le moteur déterministe.`
   );
 
@@ -387,8 +408,12 @@ async function reporterNode(state: AgentState) {
   const calc = state.calculationResult || {};
   const val = state.validationStatus || {};
 
-  // Only generate a report PDF if a valid price was calculated and driver is eligible
-  if (!calc.totalAPayer || val.isEligible === false) {
+  // Ne générer le PDF de devis QUE si :
+  // 1. L'intention est une demande de réservation / devis ("calculate_total_cost" ou "make_reservation")
+  // 2. Le conducteur n'est pas inéligible (val.isEligible !== false)
+  // 3. Un montant total valide a été calculé (calc.totalAPayer > 0)
+  const isQuoteRequest = state.intention === "calculate_total_cost" || state.intention === "make_reservation";
+  if (!isQuoteRequest || !calc.totalAPayer || val.isEligible === false) {
     return {};
   }
 

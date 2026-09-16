@@ -39,6 +39,25 @@ export const OFFICIAL_DEPOSIT_BY_CATEGORY: Record<string, number> = {
 };
 
 /**
+ * Matrice saisonnière déterministe de secours (Cahier des Charges)
+ */
+export const DEFAULT_SEASONAL_MATRIX: Record<number, Record<string, number>> = {
+  6: { compact: 1.15, economy: 1.1, suv: 1.2, premium: 1.3, utility: 1.1 },
+  7: { compact: 1.2, economy: 1.15, suv: 1.25, premium: 1.35, utility: 1.15 },
+  8: { compact: 1.25, economy: 1.2, suv: 1.3, premium: 1.4, utility: 1.2 },
+  9: { compact: 1.15, economy: 1.1, suv: 1.15, premium: 1.25, utility: 1.1 },
+  12: { compact: 1.15, economy: 1.1, suv: 1.2, premium: 1.3, utility: 1.1 },
+};
+
+export function getSeasonalMultiplierFallback(month: number, category: string): number {
+  const catKey = category.toLowerCase();
+  if (DEFAULT_SEASONAL_MATRIX[month] && DEFAULT_SEASONAL_MATRIX[month][catKey]) {
+    return DEFAULT_SEASONAL_MATRIX[month][catKey];
+  }
+  return 1.0;
+}
+
+/**
  * Options d'assurance selon rental_policies.md :
  * - Base : 0 MAD (incluse gratuitement dans le tarif de location)
  * - Tous Risques : 80 MAD / jour
