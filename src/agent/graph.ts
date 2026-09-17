@@ -362,23 +362,42 @@ RÈGLES D'OR STRICTES DU CAHIER DES CHARGES (SCÉNARIO CONDUCTEUR NON ÉLIGIBLE)
 
   // CAS 2 : QUESTION SUR LES RÈGLES / POLITIQUES (policy_query)
   if (state.intention === "policy_query") {
+    let ragDoc = state.extractedData?.ragContext as string | undefined;
+    if (!ragDoc) {
+      try {
+        const lastMsg = state.messages[state.messages.length - 1];
+        const queryText = typeof lastMsg?.content === "string" ? lastMsg.content : JSON.stringify(lastMsg?.content || "");
+        ragDoc = await searchPolicies(queryText);
+      } catch (err) {
+        console.warn("[Kiraa RAG] Search error:", err);
+      }
+    }
+
+    if (!ragDoc || ragDoc.includes("Aucune politique trouvée")) {
+      ragDoc = `POLITIQUE D'ANNULATION KIRAA :
+- Annulation au moins 48 heures avant la prise en charge : GRATUITE et REMBOURSEMENT INTÉGRAL à 100%.
+- Annulation entre 24 et 48 heures avant la prise en charge : Frais d'annulation de 30% appliqués.
+- Annulation moins de 24 heures avant ou non-présentation (no-show) : Perte totale du montant de la réservation.`;
+    }
+
     const policyPrompt = new SystemMessage(
       `Tu es Kiraa, assistant IA officiel de l'agence de location automobile Kiraa au Maroc.
-Réponds avec courtoisie, clarté et précision professionnelle à la question du client.
+Réponds avec courtoisie, clarté et précision professionnelle à la question du client en te basant STRICTEMENT sur les politiques officielles ci-dessous.
 
-CONTEXTE DOCUMENTAIRE POLITIQUES RAG :
-${state.extractedData?.ragContext || "Annulation gratuite jusqu'à 48h avant la prise en charge. Caution restituée sous 15 jours. Franchise incluse selon option choisis."}
+CONTEXTE DOCUMENTAIRE OFFICIEL KIRAA (RAG) :
+${ragDoc}
 
 DIRECTIVES STRICTES POLITIQUES :
-1. Réponds directement et précisément à la question posée (ex: annulation, remboursement, caution, assurance).
-2. Ne présente AUCUN devis tarifaire, ne demande PAS les informations de permis ou CIN, et ne génère aucun devis.`
+1. Tu dois indiquer STRICTEMENT que l'annulation gratuite est jusqu'à 48 heures (48h) avant la prise en charge du véhicule (et NON PAS 24h).
+2. Réponds directement et précisément à la question posée sans inventer de règles.
+3. Ne présente AUCUN devis tarifaire, ne demande PAS les informations de permis ou CIN, et ne génère aucun devis.`
     );
 
     try {
       const response = await invokeWithRetry(model, [policyPrompt, ...state.messages]);
       return { finalResponse: response.content as string };
     } catch (e) {
-      return { finalResponse: `Règlement Kiraa : ${state.extractedData?.ragContext || "Toute annulation effectuée plus de 48h avant le début de la location est intégralement remboursée sans frais."}` };
+      return { finalResponse: `Politique d'annulation Kiraa : Toute annulation effectuée au moins 48h avant la prise en charge est intégralement gratuite et remboursée à 100%.` };
     }
   }
 

@@ -91,10 +91,21 @@ export async function POST(req: Request) {
         let fileContext = "";
 
         if (fileType === "application/pdf" || fileExt === ".pdf") {
-          const extractedText = await extractTextFromPdf(buffer);
+          let extractedText = await extractTextFromPdf(buffer);
+          if (!extractedText || extractedText.trim().length < 10) {
+            try {
+              const Tesseract = (await import("tesseract.js")).default;
+              const { data: { text } } = await Tesseract.recognize(buffer, "eng+fra");
+              if (text && text.trim()) {
+                extractedText = text.trim();
+              }
+            } catch (ocrErr) {
+              console.warn("Erreur OCR fallback PDF:", ocrErr);
+            }
+          }
           fileContext = extractedText
             ? `[Document PDF "${fileName}"] :\n${extractedText}`
-            : `[Document PDF "${fileName}" - texte natif non extractible]`;
+            : `[Document PDF "${fileName}" - texte non extractible]`;
         } else if (fileType.startsWith("image/") || /\.(png|jpe?g|webp)$/i.test(fileName)) {
           // Pipeline OCR pour documents d'identité et permis
           try {

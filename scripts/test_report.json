@@ -93,7 +93,7 @@
         "ok": true
       }
     ],
-    "response_excerpt": "Notre politique d'annulation stipule que si vous annulez votre réservation au moins 48 heures avant la date de prise en charge, l'annulation est entièrement gratuite et vous recevrez un remboursement intégral du montant payé. Donc, si vous annulez 3 jours avant, vous pourrez récupérer votre argent sans frais."
+    "response_excerpt": "Notre politique d'annulation stipule que toute annulation effectuée au moins 48 heures avant la date de prise en charge du véhicule est entièrement gratuite, et vous recevrez un remboursement intégral du montant payé. Donc, si vous annulez 3 jours avant, vous pourrez récupérer votre argent sans frais."
   },
   {
     "id": 6,
@@ -121,7 +121,7 @@
         "ok": true
       }
     ],
-    "response_excerpt": "Bonjour,\n\nMerci pour votre message. Je suis ravi de vous confirmer que vous remplissez toutes les conditions requises pour la location d'un véhicule.\n\nVoici les détails de votre réservation pour une voiture de catégorie **Economy** pour une durée de **10 jours** :\n\n- **Tarif journalier appliqué** : 414 MAD/jour (Tarif catalogue : 360 MAD/j × coefficient saisonnier : 1.15)\n- **Sous-total location**"
+    "response_excerpt": "Bonjour,\n\nMerci pour votre message. Je suis ravi de vous confirmer que votre demande de location d'un véhicule de catégorie Economy pour une durée de 10 jours est bien enregistrée. Voici les détails de votre réservation :\n\n- **Tarif journalier appliqué** : 414 MAD/jour (Tarif catalogue : 360 MAD/j × coefficient saisonnier : 1.15)\n- **Sous-total location** : 4140 MAD (414 MAD × 10 j)\n- **Remise app"
   },
   {
     "id": 7,
@@ -137,7 +137,7 @@
         "ok": true
       }
     ],
-    "response_excerpt": "L'option Tous Risques est une couverture supplémentaire que vous pouvez choisir lors de la location d'un véhicule. Elle coûte 80 MAD par jour et couvre les dommages au véhicule loué, y compris le vol, l'incendie, le bris de glace et les dommages à la carrosserie. Avec cette option, la franchise en cas de sinistre est réduite à 2 000 MAD, quelle que soit la catégorie du véhicule.\n\nLe rachat de fran"
+    "response_excerpt": "L'option Tous Risques est une couverture supplémentaire que vous pouvez choisir lors de la location d'un véhicule. Elle coûte 80 MAD par jour et couvre les dommages au véhicule loué, tels que le vol, l'incendie, le bris de glace et les dommages à la carrosserie. Avec cette option, la franchise en cas de sinistre est réduite à 2 000 MAD, quelle que soit la catégorie du véhicule.\n\nLe rachat de franc"
   },
   {
     "id": 8,
@@ -153,7 +153,7 @@
         "ok": true
       }
     ],
-    "response_excerpt": "Oui, nous avons des véhicules utilitaires disponibles pour ce weekend. \n\nPour une location d'un jour, le tarif journalier appliqué est de **862.5 MAD** (ce tarif inclut un coefficient saisonnier de 1.15 sur le tarif catalogue de 750 MAD/j). L'assurance de base est **INCLUSE GRATUITEMENT (0 MAD)**.\n\nLe **TOTAL À PAYER pour la location** sera donc de **862.5 MAD**. De plus, une **Caution (Dépôt de g"
+    "response_excerpt": "Oui, nous avons des véhicules utilitaires disponibles pour ce weekend. \n\nPour une location d'un jour, le tarif journalier appliqué est de **862.5 MAD** (ce tarif inclut un coefficient saisonnier de 1.15 sur le tarif catalogue de 750 MAD/jour). L'assurance de base est **INCLUSE GRATUITEMENT (0 MAD)**.\n\nLe **TOTAL À PAYER pour la location** sera donc de **862.5 MAD**. De plus, une **Caution (Dépôt d"
   },
   {
     "id": 9,
@@ -177,7 +177,7 @@
         "ok": true
       }
     ],
-    "response_excerpt": "Bonjour Ahmed Benali,\n\nMerci pour vos informations. Je confirme que vous souhaitez louer un SUV pour une durée de 3 jours avec une assurance tous risques. Voici les détails de votre réservation :\n\n- **Catégorie de véhicule** : SUV\n- **Durée de location** : 3 jours\n- **Tarif journalier appliqué** : 598 MAD/jour (Tarif catalogue : 520 MAD/j × coefficient saisonnier : 1.15)\n- **Sous-total location** "
+    "response_excerpt": "Bonjour Ahmed Benali,\n\nMerci pour vos informations. Je confirme que vos données ont été enregistrées comme suit :\n\n- Nom : Ahmed Benali\n- CIN : BE123456\n- Permis N° : MA-2019-567890\n- Date de naissance : 15 mars 1998\n\nCela signifie que vous avez 25 ans, et vous remplissez donc la condition d'âge requise pour la location.\n\nPour votre demande de location d'un SUV pour 3 jours avec assurance tous ris"
   },
   {
     "id": 10,
@@ -193,6 +193,6 @@
         "ok": true
       }
     ],
-    "response_excerpt": "Bonjour Test User,\n\nMerci pour votre demande de location. Voici les détails de votre réservation pour un véhicule de catégorie **Compact** pour une durée de **2 jours** :\n\n- **Tarif journalier appliqué** : 851 MAD/jour (Tarif catalogue : 740 MAD/j × coefficient saisonnier : 1.15)\n- **Sous-total location** : 1702 MAD (851 MAD × 2 j)\n- **Assurance** : Assurance de base **INCLUSE GRATUITEMENT (0 MAD)"
+    "response_excerpt": "Bonjour Test User,\n\nMerci pour votre demande de location. Voici les détails de votre réservation pour un véhicule de catégorie **Compact** pour une durée de **2 jours** :\n\n- **Tarif journalier appliqué** : 851 MAD/jour (Tarif catalogue : 740 MAD/j × coefficient saisonnier : 1.15)\n- **Sous-total location** : 1702 MAD (851 MAD × 2 j)\n- **Assurance** : **INCLUSE GRATUITEMENT (0 MAD)**\n- **TOTAL À PAY"
   }
 ]
