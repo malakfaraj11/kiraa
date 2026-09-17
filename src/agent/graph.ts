@@ -1,6 +1,7 @@
 import { StateGraph, START, END, Annotation, MemorySaver } from "@langchain/langgraph";
 import { BaseMessage, SystemMessage } from "@langchain/core/messages";
 import { ChatGroq } from "@langchain/groq";
+import { ChatOpenAI } from "@langchain/openai";
 import { checkAvailability, calculatePrice, validateDriver, OFFICIAL_DEPOSIT_BY_CATEGORY, INSURANCE_PRICING, getSeasonalMultiplierFallback } from "@/db/queries";
 import { searchPolicies } from "./rag";
 
@@ -76,15 +77,23 @@ export const AgentStateAnnotation = Annotation.Root({
 
 export type AgentState = typeof AgentStateAnnotation.State;
 
-// Factory LLM
+// Factory LLM: Choisit OpenAI si OPENAI_API_KEY est disponible, sinon Groq
 const getModel = () => {
-  if (!process.env.GROQ_API_KEY) {
-    console.warn("ATTENTION: GROQ_API_KEY n'est pas définie dans les variables d'environnement.");
+  if (process.env.OPENAI_API_KEY) {
+    const modelName = process.env.OPENAI_MODEL || "gpt-4o-mini";
+    return new ChatOpenAI({
+      apiKey: process.env.OPENAI_API_KEY,
+      modelName: modelName,
+      temperature: 0,
+      maxRetries: 5,
+    });
   }
-  // qwen/qwen3.8-27b : supporte images (multimodal) + meilleure limite TPM
+  if (!process.env.GROQ_API_KEY) {
+    console.warn("ATTENTION: Ni OPENAI_API_KEY ni GROQ_API_KEY ne sont définies dans les variables d'environnement.");
+  }
   return new ChatGroq({
     apiKey: process.env.GROQ_API_KEY,
-    model: "qwen/qwen3.8-27b",
+    model: process.env.GROQ_MODEL || "qwen/qwen3.8-27b",
     temperature: 0,
     maxRetries: 5,
   });
