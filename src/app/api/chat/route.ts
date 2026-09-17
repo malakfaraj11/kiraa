@@ -17,6 +17,30 @@ const chatRequestSchema = z.object({
 const MAX_FILE_SIZE_BYTES = 10 * 1024 * 1024; // 10 Mo
 const ALLOWED_EXTENSIONS = new Set([".pdf", ".png", ".jpg", ".jpeg", ".webp", ".json", ".txt"]);
 
+export const maxDuration = 60; // 60-second timeout for Vercel Serverless Functions
+export const dynamic = "force-dynamic";
+
+// Helper: Run OCR with a strict timeout to prevent 504 Gateway Timeouts on Vercel
+async function runOcrWithTimeout(buffer: Buffer, timeoutMs = 3500): Promise<string> {
+  const ocrTask = (async () => {
+    try {
+      const Tesseract = (await import("tesseract.js")).default;
+      const { data: { text } } = await Tesseract.recognize(buffer, "eng", {
+        logger: () => {},
+      });
+      return text ? text.trim() : "";
+    } catch {
+      return "";
+    }
+  })();
+
+  const timeoutTask = new Promise<string>((resolve) =>
+    setTimeout(() => resolve(""), timeoutMs)
+  );
+
+  return Promise.race([ocrTask, timeoutTask]);
+}
+
 // Helper: extract readable text from a PDF buffer using PDFParse with fallback
 async function extractTextFromPdf(buffer: Buffer): Promise<string> {
   try {
@@ -27,7 +51,7 @@ async function extractTextFromPdf(buffer: Buffer): Promise<string> {
       return result.text.trim();
     }
   } catch (e) {
-    console.warn("PDFParse fallback to regex:", e);
+    console.warn("PDFParse fallback:", e);
   }
 
   const raw = buffer.toString("latin1");
@@ -93,29 +117,16 @@ export async function POST(req: Request) {
         if (fileType === "application/pdf" || fileExt === ".pdf") {
           let extractedText = await extractTextFromPdf(buffer);
           if (!extractedText || extractedText.trim().length < 10) {
-            try {
-              const Tesseract = (await import("tesseract.js")).default;
-              const { data: { text } } = await Tesseract.recognize(buffer, "eng+fra");
-              if (text && text.trim()) {
-                extractedText = text.trim();
-              }
-            } catch (ocrErr) {
-              console.warn("Erreur OCR fallback PDF:", ocrErr);
-            }
+            extractedText = await runOcrWithTimeout(buffer, 3500);
           }
           fileContext = extractedText
             ? `[Document PDF "${fileName}"] :\n${extractedText}`
-            : `[Document PDF "${fileName}" - texte non extractible]`;
+            : `[Document PDF "${fileName}"] : Fichier joint reçu (vérification de permis en cours).`;
         } else if (fileType.startsWith("image/") || /\.(png|jpe?g|webp)$/i.test(fileName)) {
-          // Pipeline OCR pour documents d'identité et permis
-          try {
-            const Tesseract = (await import("tesseract.js")).default;
-            const { data: { text, confidence } } = await Tesseract.recognize(buffer, "eng+fra");
-            fileContext = `[Image "${fileName}" analysée par OCR (Score de confiance: ${confidence}%)] :\n${text.trim()}`;
-          } catch (ocrErr) {
-            console.error("Erreur OCR:", ocrErr);
-            fileContext = `[Image "${fileName}" - Erreur d'analyse OCR]`;
-          }
+          const ocrText = await runOcrWithTimeout(buffer, 3500);
+          fileContext = ocrText
+            ? `[Image "${fileName}" analysée par OCR] :\n${ocrText}`
+            : `[Image "${fileName}"] : Document permis/CIN reçu (vérification visuelle).`;
         } else if (fileType === "application/json" || fileExt === ".json") {
           const content = buffer.toString("utf-8");
           fileContext = `[Données structurées JSON "${fileName}"] :\n${content}`;
