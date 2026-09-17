@@ -25,7 +25,7 @@
         "ok": true
       }
     ],
-    "response_excerpt": "Bonjour et bienvenue chez Kiraa !\n\nJe suis ravi de vous confirmer que votre demande est éligible. Voici le détail de votre devis pour la location d'un **SUV** demain, de **17h à 23h**.\n\n### 📋 Détails de la location\n*   **Durée :** 1 jour (tranche horaire de 17h à 23h).\n    *   *Note : Toute location sur une même journée est soumise au tarif forfaitaire d'une journée.*\n*   **Tarif journalier appli"
+    "response_excerpt": "Bonjour,\n\nMerci pour votre demande de location. Je vous confirme que vous souhaitez louer un SUV pour une durée de 1 jour, de 17h à 23h (soit 6 heures). \n\nVoici les détails de votre réservation :\n\n- **Catégorie** : SUV\n- **Durée** : 1 jour (17h à 23h)\n- **Tarif journalier appliqué** : 598 MAD (Tarif catalogue : 520 MAD/j × coefficient saisonnier : 1.15)\n- **Assurance** : INCLUSE GRATUITEMENT (0 MA"
   },
   {
     "id": 2,
@@ -45,7 +45,7 @@
         "ok": true
       }
     ],
-    "response_excerpt": "Bonjour,\n\nJe suis désolé de vous informer que votre demande de réservation a été **refusée**.\n\nSelon nos conditions générales, l'âge minimum requis pour conduire un véhicule chez Kiraa est de **21 ans**, et l'ancienneté minimale du permis de conduire est de **2 ans**. En tant que conducteur de 19 ans, vous ne remplissez pas ces critères réglementaires obligatoires.\n\nEn conséquence, nous ne pouvons"
+    "response_excerpt": "Bonjour ! Je suis désolé, mais je dois vous informer que votre demande de location ne peut pas être acceptée. Le motif de ce refus est que l'âge minimum requis pour louer un véhicule est de 21 ans, et vous devez également avoir au moins 2 ans d'ancienneté de permis de conduire.\n\nJe vous encourage à revenir lorsque vous aurez atteint l'âge requis ou à faire effectuer la location par un conducteur p"
   },
   {
     "id": 3,
@@ -61,7 +61,7 @@
         "ok": true
       }
     ],
-    "response_excerpt": "Bonjour,\n\nJe suis désolé de vous informer que votre demande de réservation est **refusée**.\n\nConformément à notre réglementation stricte, pour louer un véhicule chez Kiraa, le conducteur principal doit impérativement :\n1. Avoir au moins **21 ans**.\n2. Posséder un permis de conduire valide depuis au moins **2 ans**.\n\nBien que vous remplissiez la condition d'âge, votre ancienneté de permis (1 an) ne"
+    "response_excerpt": "Bonjour,\n\nJe vous remercie de votre intérêt pour la location d'un véhicule chez Kiraa. Cependant, je dois vous informer que votre demande a été rejetée. \n\nLe motif de ce refus est que, bien que vous ayez l'âge requis de 23 ans, votre permis de conduire doit être valide depuis plus de 2 ans pour pouvoir louer un véhicule. \n\nJe vous invite à revenir lorsque vous aurez atteint l'ancienneté minimale d"
   },
   {
     "id": 4,
@@ -77,7 +77,7 @@
         "ok": true
       }
     ],
-    "response_excerpt": "Bonjour,\n\nMerci pour ces informations. J'ai bien pris note de votre profil : **22 ans** et **2 ans de permis**.\n\n✅ **Validation du dossier :**\n*   **Âge :** Condition remplie (minimum 21 ans).\n*   **Ancienneté du permis :** Condition remplie (minimum 2 ans).\n\nVoici le détail de votre devis pour la location d'un véhicule **Premium** sur **5 jours** :\n\n### 📋 Détail du Devis\n\n*   **Catégorie :** Pre"
+    "response_excerpt": "Bonjour,\n\nMerci pour ces informations. Je suis ravi de vous confirmer que vous remplissez les conditions requises pour la location d'une voiture Premium.\n\nVoici les détails de votre réservation :\n\n- **Catégorie** : PREMIUM\n- **Durée de location** : 5 jours\n- **Tarif journalier appliqué** : 1552.5 MAD (Tarif catalogue : 1350 MAD/j × coefficient saisonnier : 1.15)\n- **Sous-total location** : 7762.5 "
   },
   {
     "id": 5,
@@ -93,7 +93,7 @@
         "ok": true
       }
     ],
-    "response_excerpt": "Bonjour,\n\nConcernant votre demande, l'annulation effectuée 3 jours avant la date de prise en charge est **entièrement gratuite**.\n\nEn effet, notre politique stipule que toute annulation réalisée au moins 48 heures avant la prise en charge du véhicule donne droit à un remboursement intégral du montant payé. Vous récupérerez donc la totalité de votre argent.\n\nCordialement,\nL'équipe Kiraa"
+    "response_excerpt": "Notre politique d'annulation stipule que si vous annulez votre réservation au moins 48 heures avant la date de prise en charge, l'annulation est entièrement gratuite et vous recevrez un remboursement intégral du montant payé. Donc, si vous annulez 3 jours avant, vous pourrez récupérer votre argent sans frais."
   },
   {
     "id": 6,
@@ -121,7 +121,7 @@
         "ok": true
       }
     ],
-    "response_excerpt": "Bonjour,\n\nMerci pour ces informations. J'ai bien pris note de votre profil :\n*   **Âge :** 35 ans (Condition remplie ✅)\n*   **Ancienneté du permis :** 10 ans (Condition remplie ✅)\n\nVoici le détail de votre devis pour la location d'une voiture de catégorie **Economy** sur une durée de **10 jours**, avec une remise de **10%** :\n\n### 📋 Détail du Devis\n\n1.  **Tarif journalier appliqué :** 414 MAD/jou"
+    "response_excerpt": "Bonjour,\n\nMerci pour votre message. Je suis ravi de vous confirmer que vous remplissez toutes les conditions requises pour la location d'un véhicule.\n\nVoici les détails de votre réservation pour une voiture de catégorie **Economy** pour une durée de **10 jours** :\n\n- **Tarif journalier appliqué** : 414 MAD/jour (Tarif catalogue : 360 MAD/j × coefficient saisonnier : 1.15)\n- **Sous-total location**"
   },
   {
     "id": 7,
@@ -137,7 +137,7 @@
         "ok": true
       }
     ],
-    "response_excerpt": "Bonjour,\n\nVoici les détails concernant les options d'assurance proposées par Kiraa pour vous aider à faire le meilleur choix :\n\n**1. L'option Tous Risques**\nC'est une assurance complémentaire disponible au tarif de **80 MAD par jour**. Elle étend la couverture aux dommages subis par le véhicule loué (vol, incendie, bris de glace, dommages carrosserie). Son principal avantage est de réduire la fran"
+    "response_excerpt": "L'option Tous Risques est une couverture supplémentaire que vous pouvez choisir lors de la location d'un véhicule. Elle coûte 80 MAD par jour et couvre les dommages au véhicule loué, y compris le vol, l'incendie, le bris de glace et les dommages à la carrosserie. Avec cette option, la franchise en cas de sinistre est réduite à 2 000 MAD, quelle que soit la catégorie du véhicule.\n\nLe rachat de fran"
   },
   {
     "id": 8,
@@ -153,7 +153,7 @@
         "ok": true
       }
     ],
-    "response_excerpt": "Bonjour,\n\nOui, nous avons bien des véhicules de la catégorie **Utility** disponibles pour ce week-end.\n\nVoici le détail de votre devis pour une location de **1 jour** (forfait journalier) :\n\n*   **Tarif journalier appliqué** : 862,50 MAD (incluant le coefficient saisonnier de 1,15).\n*   **Assurance** : L'assurance de base est **incluse gratuitement** (0 MAD).\n*   **Total à payer pour la location**"
+    "response_excerpt": "Oui, nous avons des véhicules utilitaires disponibles pour ce weekend. \n\nPour une location d'un jour, le tarif journalier appliqué est de **862.5 MAD** (ce tarif inclut un coefficient saisonnier de 1.15 sur le tarif catalogue de 750 MAD/j). L'assurance de base est **INCLUSE GRATUITEMENT (0 MAD)**.\n\nLe **TOTAL À PAYER pour la location** sera donc de **862.5 MAD**. De plus, une **Caution (Dépôt de g"
   },
   {
     "id": 9,
@@ -177,7 +177,7 @@
         "ok": true
       }
     ],
-    "response_excerpt": "Bonjour Ahmed Benali,\n\nC'est avec plaisir que je confirme la réception de vos informations. Vos données ont été enregistrées avec succès :\n*   **Nom :** Ahmed Benali\n*   **CIN :** BE123456\n*   **Permis N° :** MA-2019-567890\n\nConcernant votre éligibilité, votre âge de **28 ans** est validé (condition de 21 ans minimum remplie). Cependant, pour finaliser définitivement votre dossier, j'ai besoin de "
+    "response_excerpt": "Bonjour Ahmed Benali,\n\nMerci pour vos informations. Je confirme que vous souhaitez louer un SUV pour une durée de 3 jours avec une assurance tous risques. Voici les détails de votre réservation :\n\n- **Catégorie de véhicule** : SUV\n- **Durée de location** : 3 jours\n- **Tarif journalier appliqué** : 598 MAD/jour (Tarif catalogue : 520 MAD/j × coefficient saisonnier : 1.15)\n- **Sous-total location** "
   },
   {
     "id": 10,
@@ -193,6 +193,6 @@
         "ok": true
       }
     ],
-    "response_excerpt": "Bonjour,\n\nMerci pour l'envoi de vos documents. J'ai bien pris note de votre demande de location d'un véhicule **Compact** pour une durée de **2 jours**.\n\nJ'ai pu extraire et enregistrer les informations suivantes à partir de vos documents :\n*   **Nom du conducteur :** Test User\n*   **CIN :** AB123456\n*   **N° de Permis :** D987654321\n*   **Âge :** 36 ans (Condition d'âge de 21 ans minimum **validé"
+    "response_excerpt": "Bonjour Test User,\n\nMerci pour votre demande de location. Voici les détails de votre réservation pour un véhicule de catégorie **Compact** pour une durée de **2 jours** :\n\n- **Tarif journalier appliqué** : 851 MAD/jour (Tarif catalogue : 740 MAD/j × coefficient saisonnier : 1.15)\n- **Sous-total location** : 1702 MAD (851 MAD × 2 j)\n- **Assurance** : Assurance de base **INCLUSE GRATUITEMENT (0 MAD)"
   }
 ]

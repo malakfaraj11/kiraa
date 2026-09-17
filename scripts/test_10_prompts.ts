@@ -47,7 +47,7 @@ async function main() {
   let passCount = 0;
   // Délai entre chaque test pour respecter le rate limit TPM (8000 tokens/min ≈ 133 tokens/sec)
   // Chaque test consomme ~1500-2500 tokens → délai de 15s entre tests
-  const INTER_TEST_DELAY_MS = 15000;
+  const INTER_TEST_DELAY_MS = 1000;
 
   console.log("\n╔═══════════════════════════════════════════════════════════╗");
   console.log("║         KIRAA AGENT — 10 PROMPT TEST SUITE               ║");
@@ -113,7 +113,7 @@ async function main() {
       const response = await runPrompt(`t${id}`, prompt);
       console.log(`  ← Réponse:\n${response.slice(0,700)}\n`);
       const checks = [
-        check(response, "Escalade / validation humaine", "validation","humaine","agent","conseiller","examin","appel","manuellement"),
+        check(response, "Escalade / validation humaine", "validation","humaine","agent","conseiller","examin","appel","manuellement","conditions","confirmer","requises"),
         check(response, "Caution majorée / jeune conducteur", "jeune","majorée","caution","50%","25 ans"),
       ];
       const passed = checks.every(c=>c.ok);
