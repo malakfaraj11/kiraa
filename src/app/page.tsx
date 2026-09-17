@@ -7,6 +7,46 @@ type Message = {
   content: string;
 };
 
+function formatBoldText(text: string) {
+  const parts = text.split(/(\*\*[^*]+\*\*)/g);
+  return parts.map((part, i) => {
+    if (part.startsWith("**") && part.endsWith("**")) {
+      return <strong key={i} className="font-semibold text-white">{part.slice(2, -2)}</strong>;
+    }
+    return part;
+  });
+}
+
+function renderMessageContent(text: string) {
+  // Regex to extract markdown link containing base64 PDF data: [text](data:application/pdf;base64,...)
+  const pdfMatch = text.match(/\[([^\]]+)\]\((data:application\/pdf;base64,[A-Za-z0-9+/=]+)\)/);
+  if (pdfMatch) {
+    const linkText = pdfMatch[1];
+    const pdfDataUrl = pdfMatch[2];
+    const cleanText = text.replace(pdfMatch[0], "").trim();
+
+    return (
+      <div className="space-y-3">
+        <div>{formatBoldText(cleanText)}</div>
+        <div className="pt-2">
+          <a
+            href={pdfDataUrl}
+            download="Devis_Officiel_Kiraa.pdf"
+            className="inline-flex items-center gap-2.5 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-semibold px-4 py-2.5 rounded-xl shadow-lg transition-all border border-emerald-400/40 text-sm no-underline transform hover:-translate-y-0.5"
+          >
+            <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+            <span>📥 {linkText || "Télécharger le Devis PDF Officiel"}</span>
+          </a>
+        </div>
+      </div>
+    );
+  }
+
+  return formatBoldText(text);
+}
+
 export default function Home() {
   const [messages, setMessages] = useState<Message[]>([
     {
@@ -130,7 +170,7 @@ export default function Home() {
                       : "bg-emerald-950/60 border border-emerald-700/50 text-emerald-100 rounded-tr-none self-end"
                   }`}
                 >
-                  {msg.content}
+                  {renderMessageContent(msg.content)}
                 </div>
               ))}
 
