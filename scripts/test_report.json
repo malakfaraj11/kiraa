@@ -1,0 +1,198 @@
+[
+  {
+    "id": 1,
+    "scenario": "SUV intra-journalier (17h–23h), 28 ans, 5 ans permis",
+    "passed": true,
+    "checks": [
+      {
+        "label": "Mentionne 1 jour / forfait",
+        "ok": true
+      },
+      {
+        "label": "Mentionne tarif SUV ~520 MAD",
+        "ok": true
+      },
+      {
+        "label": "Caution 5000 MAD",
+        "ok": true
+      },
+      {
+        "label": "Assurance incluse/gratuite",
+        "ok": true
+      },
+      {
+        "label": "Pas de refus",
+        "ok": true
+      }
+    ],
+    "response_excerpt": "Bonjour et bienvenue chez Kiraa !\n\nJe suis ravi de vous confirmer que votre demande est éligible. Voici le détail de votre devis pour la location d'un **SUV** demain, de **17h à 23h**.\n\n### 📋 Détails de la location\n*   **Durée :** 1 jour (tranche horaire de 17h à 23h).\n    *   *Note : Toute location sur une même journée est soumise au tarif forfaitaire d'une journée.*\n*   **Tarif journalier appli"
+  },
+  {
+    "id": 2,
+    "scenario": "Conducteur mineur 19 ans → Rejet automatique",
+    "passed": true,
+    "checks": [
+      {
+        "label": "Rejet explicite",
+        "ok": true
+      },
+      {
+        "label": "Mentionne âge minimum 21 ans",
+        "ok": true
+      },
+      {
+        "label": "AUCUN prix",
+        "ok": true
+      }
+    ],
+    "response_excerpt": "Bonjour,\n\nJe suis désolé de vous informer que votre demande de réservation a été **refusée**.\n\nSelon nos conditions générales, l'âge minimum requis pour conduire un véhicule chez Kiraa est de **21 ans**, et l'ancienneté minimale du permis de conduire est de **2 ans**. En tant que conducteur de 19 ans, vous ne remplissez pas ces critères réglementaires obligatoires.\n\nEn conséquence, nous ne pouvons"
+  },
+  {
+    "id": 3,
+    "scenario": "Permis < 2 ans (23 ans, 1 an) → Rejet",
+    "passed": true,
+    "checks": [
+      {
+        "label": "Rejet permis < 2 ans",
+        "ok": true
+      },
+      {
+        "label": "AUCUN prix",
+        "ok": true
+      }
+    ],
+    "response_excerpt": "Bonjour,\n\nJe suis désolé de vous informer que votre demande de réservation est **refusée**.\n\nConformément à notre réglementation stricte, pour louer un véhicule chez Kiraa, le conducteur principal doit impérativement :\n1. Avoir au moins **21 ans**.\n2. Posséder un permis de conduire valide depuis au moins **2 ans**.\n\nBien que vous remplissiez la condition d'âge, votre ancienneté de permis (1 an) ne"
+  },
+  {
+    "id": 4,
+    "scenario": "22 ans + Premium → Escalade humaine",
+    "passed": true,
+    "checks": [
+      {
+        "label": "Escalade / validation humaine",
+        "ok": true
+      },
+      {
+        "label": "Caution majorée / jeune conducteur",
+        "ok": true
+      }
+    ],
+    "response_excerpt": "Bonjour,\n\nMerci pour ces informations. J'ai bien pris note de votre profil : **22 ans** et **2 ans de permis**.\n\n✅ **Validation du dossier :**\n*   **Âge :** Condition remplie (minimum 21 ans).\n*   **Ancienneté du permis :** Condition remplie (minimum 2 ans).\n\nVoici le détail de votre devis pour la location d'un véhicule **Premium** sur **5 jours** :\n\n### 📋 Détail du Devis\n\n*   **Catégorie :** Pre"
+  },
+  {
+    "id": 5,
+    "scenario": "Question politique annulation (RAG)",
+    "passed": true,
+    "checks": [
+      {
+        "label": "Répond à l'annulation",
+        "ok": true
+      },
+      {
+        "label": "Pas de devis tarifaire",
+        "ok": true
+      }
+    ],
+    "response_excerpt": "Bonjour,\n\nConcernant votre demande, l'annulation effectuée 3 jours avant la date de prise en charge est **entièrement gratuite**.\n\nEn effet, notre politique stipule que toute annulation réalisée au moins 48 heures avant la prise en charge du véhicule donne droit à un remboursement intégral du montant payé. Vous récupérerez donc la totalité de votre argent.\n\nCordialement,\nL'équipe Kiraa"
+  },
+  {
+    "id": 6,
+    "scenario": "Economy 10 jours + remise 10%",
+    "passed": true,
+    "checks": [
+      {
+        "label": "Mentionne Economy",
+        "ok": true
+      },
+      {
+        "label": "Mentionne 10 jours",
+        "ok": true
+      },
+      {
+        "label": "Remise / réduction 10%",
+        "ok": true
+      },
+      {
+        "label": "Caution Economy 2000 MAD",
+        "ok": true
+      },
+      {
+        "label": "Pas de rejet",
+        "ok": true
+      }
+    ],
+    "response_excerpt": "Bonjour,\n\nMerci pour ces informations. J'ai bien pris note de votre profil :\n*   **Âge :** 35 ans (Condition remplie ✅)\n*   **Ancienneté du permis :** 10 ans (Condition remplie ✅)\n\nVoici le détail de votre devis pour la location d'une voiture de catégorie **Economy** sur une durée de **10 jours**, avec une remise de **10%** :\n\n### 📋 Détail du Devis\n\n1.  **Tarif journalier appliqué :** 414 MAD/jou"
+  },
+  {
+    "id": 7,
+    "scenario": "Assurance tous risques / franchise (RAG)",
+    "passed": true,
+    "checks": [
+      {
+        "label": "Parle assurance/franchise",
+        "ok": true
+      },
+      {
+        "label": "Mentionne tarifs assurance",
+        "ok": true
+      }
+    ],
+    "response_excerpt": "Bonjour,\n\nVoici les détails concernant les options d'assurance proposées par Kiraa pour vous aider à faire le meilleur choix :\n\n**1. L'option Tous Risques**\nC'est une assurance complémentaire disponible au tarif de **80 MAD par jour**. Elle étend la couverture aux dommages subis par le véhicule loué (vol, incendie, bris de glace, dommages carrosserie). Son principal avantage est de réduire la fran"
+  },
+  {
+    "id": 8,
+    "scenario": "Disponibilité véhicule utilitaire",
+    "passed": true,
+    "checks": [
+      {
+        "label": "Répond disponibilité utilitaire",
+        "ok": true
+      },
+      {
+        "label": "Pas de refus inéligibilité",
+        "ok": true
+      }
+    ],
+    "response_excerpt": "Bonjour,\n\nOui, nous avons bien des véhicules de la catégorie **Utility** disponibles pour ce week-end.\n\nVoici le détail de votre devis pour une location de **1 jour** (forfait journalier) :\n\n*   **Tarif journalier appliqué** : 862,50 MAD (incluant le coefficient saisonnier de 1,15).\n*   **Assurance** : L'assurance de base est **incluse gratuitement** (0 MAD).\n*   **Total à payer pour la location**"
+  },
+  {
+    "id": 9,
+    "scenario": "JSON OCR permis (Ahmed Benali, 28 ans, 5 ans) + SUV 3j tous risques",
+    "passed": true,
+    "checks": [
+      {
+        "label": "Reconnaît Ahmed/Benali/permis",
+        "ok": true
+      },
+      {
+        "label": "3 jours SUV",
+        "ok": true
+      },
+      {
+        "label": "Tous risques / 80 MAD",
+        "ok": true
+      },
+      {
+        "label": "Pas de rejet",
+        "ok": true
+      }
+    ],
+    "response_excerpt": "Bonjour Ahmed Benali,\n\nC'est avec plaisir que je confirme la réception de vos informations. Vos données ont été enregistrées avec succès :\n*   **Nom :** Ahmed Benali\n*   **CIN :** BE123456\n*   **Permis N° :** MA-2019-567890\n\nConcernant votre éligibilité, votre âge de **28 ans** est validé (condition de 21 ans minimum remplie). Cependant, pour finaliser définitivement votre dossier, j'ai besoin de "
+  },
+  {
+    "id": 10,
+    "scenario": "Image permis (PNG) + Compact 2 jours",
+    "passed": true,
+    "checks": [
+      {
+        "label": "Compact / 2 jours",
+        "ok": true
+      },
+      {
+        "label": "Mentionne permis/doc/tarif/caution/âge",
+        "ok": true
+      }
+    ],
+    "response_excerpt": "Bonjour,\n\nMerci pour l'envoi de vos documents. J'ai bien pris note de votre demande de location d'un véhicule **Compact** pour une durée de **2 jours**.\n\nJ'ai pu extraire et enregistrer les informations suivantes à partir de vos documents :\n*   **Nom du conducteur :** Test User\n*   **CIN :** AB123456\n*   **N° de Permis :** D987654321\n*   **Âge :** 36 ans (Condition d'âge de 21 ans minimum **validé"
+  }
+]

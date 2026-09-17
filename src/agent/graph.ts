@@ -81,11 +81,38 @@ const getModel = () => {
   if (!process.env.GROQ_API_KEY) {
     console.warn("ATTENTION: GROQ_API_KEY n'est pas définie dans les variables d'environnement.");
   }
+  // qwen/qwen3.8-27b : supporte images (multimodal) + meilleure limite TPM
   return new ChatGroq({
     apiKey: process.env.GROQ_API_KEY,
-    model: "openai/gpt-oss-120b",
+    model: "qwen/qwen3.8-27b",
     temperature: 0,
+    maxRetries: 5,
   });
+};
+
+// Retry helper avec backoff exponentiel pour les erreurs 429 (rate limit Groq)
+async function invokeWithRetry(
+  model: ReturnType<typeof getModel>,
+  messages: Parameters<typeof model.invoke>[0],
+  maxRetries = 5
+): Promise<Awaited<ReturnType<typeof model.invoke>>> {
+  for (let attempt = 0; attempt < maxRetries; attempt++) {
+    try {
+      return await model.invoke(messages);
+    } catch (e: unknown) {
+      const status = (e as { status?: number })?.status;
+      const isRateLimit = status === 429;
+      if (isRateLimit && attempt < maxRetries - 1) {
+        // Backoff exponentiel : 1s, 2s, 4s, 8s, 16s
+        const delay = Math.pow(2, attempt) * 1000;
+        console.warn(`[Kiraa] Rate limit 429 — retry ${attempt + 1}/${maxRetries - 1} dans ${delay}ms`);
+        await new Promise((r) => setTimeout(r, delay));
+        continue;
+      }
+      throw e;
+    }
+  }
+  throw new Error("invokeWithRetry: maxRetries atteint");
 };
 
 // 2. Nodes Functions (The 7 layers from the specs)
@@ -136,7 +163,7 @@ RÈGLES D'EXTRACTION:
   );
 
   try {
-    const response = await model.invoke([systemPrompt, ...state.messages]);
+    const response = await invokeWithRetry(model, [systemPrompt, ...state.messages]);
     const content = (response.content as string).trim();
     const jsonMatch = content.match(/\{[\s\S]*\}/);
     if (jsonMatch) {
@@ -317,7 +344,7 @@ RÈGLES D'OR STRICTES DU CAHIER DES CHARGES (SCÉNARIO CONDUCTEUR NON ÉLIGIBLE)
     );
 
     try {
-      const response = await model.invoke([rejectionPrompt, ...state.messages]);
+      const response = await invokeWithRetry(model, [rejectionPrompt, ...state.messages]);
       return { finalResponse: response.content as string };
     } catch (e) {
       return { finalResponse: `Votre demande ne peut pas être acceptée : ${errorMotifs}. Conformément à notre politique, aucun calcul de prix n'est proposé aux dossiers inéligibles.` };
@@ -339,7 +366,7 @@ DIRECTIVES STRICTES POLITIQUES :
     );
 
     try {
-      const response = await model.invoke([policyPrompt, ...state.messages]);
+      const response = await invokeWithRetry(model, [policyPrompt, ...state.messages]);
       return { finalResponse: response.content as string };
     } catch (e) {
       return { finalResponse: `Règlement Kiraa : ${state.extractedData?.ragContext || "Toute annulation effectuée plus de 48h avant le début de la location est intégralement remboursée sans frais."}` };
@@ -396,7 +423,7 @@ DIRECTIVES STRICTES ZÉRO-HALLUCINATION :
   );
 
   try {
-    const response = await model.invoke([systemPrompt, ...state.messages]);
+    const response = await invokeWithRetry(model, [systemPrompt, ...state.messages]);
     return { finalResponse: response.content as string };
   } catch (e) {
     console.error("Erreur de génération LLM:", e);
